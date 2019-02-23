@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class WebhookController extends Controller
 {
-    public function emailImport($data)
+    public function emailImport(Request $data)
     {
         return response(
             [
