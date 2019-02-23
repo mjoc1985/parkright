@@ -11,7 +11,7 @@ class WebhookController extends Controller
         return response(
             [
                 'data' => $data
-            ]
+            ], 200
         );
     }
 }
