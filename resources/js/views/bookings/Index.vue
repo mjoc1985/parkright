@@ -1,0 +1,152 @@
+<template>
+    <div class="flex-1">
+        <div class="card">
+            <div class="card-header">
+                <h1>Bookings</h1>
+                <search-bookings @bookings="updateBookings"></search-bookings>
+                <import-button></import-button>
+            </div>
+            <div class="card-body p-0">
+                <div>
+                    <table class="table w-full">
+                        <thead class="text-grey-darkest text-base bg-grey-lightest">
+                        <tr>
+                            <th class="pl-10"># Ref</th>
+                            <th class="px-2 pl-10 text-left">Customer</th>
+                            <th class="px-2">Arriving</th>
+                            <th class="px-2">Leaving</th>
+                            <th class="px-2">Vehicle</th>
+                            <th class="px-2 text-left">Agent</th>
+                            <th class="pr-10">&nbsp</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr class="text-sm border-b border-grey-lighter " v-for="booking in bookings">
+                            <td class="py-4 pl-10 text-primary-black text-center font-semibold w-32">
+                                {{booking.ref}}
+                                <span v-if="booking.status === 'booked'" class="py-1 px-2 font-bold rounded text-center text-xs text-green uppercase bg-green-lightest">{{booking.status}}</span>
+                                <span v-else-if="booking.status != 'booked'" class="py-1 px-2 font-bold rounded text-center text-xs text-red uppercase bg-red-lightest">{{booking.status}}</span>
+                            </td>
+                            <td class="py-4 pl-10 px-2 w-40">
+                                <span class="font-semibold text-primary-black">{{booking.booking_data.first_name}} {{booking.booking_data.last_name}}</span>
+                                <span class="block text-xs">{{booking.booking_data.mobile}}</span>
+                            </td>
+                            <td class="py-4 px-2 text-center w-32">
+                                <span class="block">{{booking.booking_data.arrival_date}}</span>
+                                <span class="block">{{booking.booking_data.arrival_time}}</span>
+
+                            </td>
+                            <td class="py-4 px-2 text-center w-32">
+                                <span class="block">{{booking.booking_data.return_date}}</span>
+                                <span class="block">{{booking.booking_data.return_time}}</span>
+
+                            </td>
+                            <td class="py-4 px-2 text-center w-40">
+                                <span class="block font-semibold">{{booking.booking_data.vehicle_reg}}</span>
+
+                                <span class="block text-xs">{{booking.booking_data.vehicle_colour}} {{booking.booking_data.vehicle}}</span>
+
+                            </td>
+                            <td class="py-4 px-2 w-48 font-semibold text-primary-dark">{{booking.agent.name}}</td>
+
+                            <td class="py-4">
+                                <router-link :to="{name: 'booking-edit', params:{id:booking.id}}"
+                                             class="btn btn-sm text-primary">
+                                    Manage</router-link>
+                                <!--<button @click.prevent class="btn btn-sm text-primary">Manage</button>-->
+                                <!--<button class="btn btn-sm text-primary-dark">Waiver</button>button-->
+
+                                <!--<button class="btn btn-sm text-red">Cancel</button>-->
+
+                            </td>
+                            
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div v-if="bookings == null" class="w-full p-8 text-center text-primary">There are no bookings to
+                        show.
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer p-4 flex font-semibold">
+                <div class="flex flex-1">
+                    <a class="mr-2 text-primary" v-if="page.previous" href="#"
+                       @click.prevent="changePage(page.previous)">Previous</a>
+                    <a class="mr-2 text-primary" v-if="page.next" href="#" @click.prevent="changePage(page.next)">Next</a>
+
+                </div>
+                <div class="flex text-primary-dark">
+                    <span>Page: {{page.current}} of {{page.count}}</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</template>
+<script>
+    import ImportButton from '../bookings/partials/ImportBookings';
+    import SearchBookings from '../bookings/partials/SearchBookings'
+
+    export default {
+        components: {ImportButton, SearchBookings},
+        data() {
+            return {
+                page: {
+                    current: null,
+                    next: null,
+                    previous: null,
+                    last: null,
+                    first: null,
+                    count: null
+                },
+                bookings: null,
+            }
+        },
+        mounted() {
+            this.fetchBookings();
+        },
+        methods: {
+            fetchBookings() {
+                axios.get('bookings')
+                    .then(response => {
+                        let bookingCollection = response.data.bookings.data;
+
+                        if (bookingCollection.length > 0) {
+                            this.bookings = response.data.bookings.data;
+                            this.setPages(response.data.bookings);
+
+                        }
+                    });
+            },
+            updateBookings(data) {
+
+                this.bookings = data.data;
+                this.setPages(data);
+
+
+            },
+            changePage(page) {
+                axios.get(page)
+                    .then(response => {
+                        this.bookings = response.data.bookings.data;
+                        this.setPages(response.data.bookings);
+
+                    })
+            },
+            setPages(data) {
+                this.page.current = data.current_page;
+                this.page.next = data.next_page_url;
+                this.page.previous = data.prev_page_url;
+                this.page.last = data.last_page_url;
+                this.page.first = data.first_page_url;
+                this.page.count = data.last_page;
+
+
+            }
+        }
+    }
+</script>

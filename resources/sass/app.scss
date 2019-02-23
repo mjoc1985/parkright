@@ -1,0 +1,221 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/preflight";
+ */
+@tailwind preflight;
+
+/**
+ * This injects any component classes registered by plugins.
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/components";
+ */
+@tailwind components;
+
+/**
+ * Here you would add any of your custom component classes; stuff that you'd
+ * want loaded *before* the utilities so that the utilities could still
+ * override them.
+ *
+ * Example:
+ *
+ * .btn { ... }
+ * .form-input { ... }
+ *
+ * Or if using a preprocessor or `postcss-import`:
+ *
+ * @import "components/buttons";
+ * @import "components/forms";
+ */
+
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  @apply .font-sans;
+  @apply .leading-normal;
+  @apply .text-grey-darkest;
+}
+.max-w-screen {
+  max-width: 1140px;
+}
+
+.w-min {
+  width: 1%;
+}
+a {
+  @apply .text-grey-darker .no-underline;
+}
+
+.router-link-active {
+  @apply .no-underline ;
+}
+
+.router-link-exact-active svg {
+  @apply .text-primary ;
+}
+
+.router-link-exact-active {
+ @apply .font-semibold .text-primary-black;
+}
+
+.card {
+  border-radius: .5rem;
+  background-color: #fff;
+  -webkit-box-shadow: 0 18px 35px rgba(50,50,93,.1), 0 8px 15px rgba(0,0,0,.07);
+  box-shadow: 0 18px 35px rgba(50,50,93,.1), 0 8px 15px rgba(0,0,0,.07);
+  overflow: hidden;
+}
+.card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 2rem 2.5rem;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  background-color: #fbfcfd;
+}
+
+.card-header h1 {
+  font-size: 1.125rem;
+  color: #1b476f;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.card-footer {
+  padding: 1.5rem 2.5rem;
+  text-align: right;
+  border-bottom-right-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+  background-color: #fbfcfd;
+  border-top-width: 2px;
+  border-color: #f3f6fa;
+}
+
+:after, :before {
+  border: 0 solid #e2e5ec;
+  border-top-color: rgb(226, 229, 236);
+  border-top-style: solid;
+  border-top-width: 0px;
+  border-right-color: rgb(226, 229, 236);
+  border-right-style: solid;
+  border-right-width: 0px;
+  border-bottom-color: rgb(226, 229, 236);
+  border-bottom-style: solid;
+  border-bottom-width: 0px;
+  border-left-color: rgb(226, 229, 236);
+  border-left-style: solid;
+  border-left-width: 0px;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+}
+
+.table th {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  text-transform: uppercase;
+  font-size: .75rem;
+  background-color: #f3f6fa;
+  color: #666875;
+  border-color: #edeef2;
+  border-bottom-width: 2px;
+  white-space: nowrap;
+  letter-spacing: .03em;
+}
+
+.btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  border-radius: .25rem;
+  background-color: #fff;
+  text-align: center;
+  padding: .75rem 1.5rem;
+  font-size: .875rem;
+  text-decoration: none;
+  font-weight: 700;
+  -webkit-box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 0 1px rgba(0,0,0,.08);
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 0 1px rgba(0,0,0,.08);
+  border-width: 1px;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  position: relative;
+}
+.btn-sm {
+  padding: .25rem .5rem ;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.btn-primary {
+  background-color: #2b79c1;
+  border-width: 1px;
+  border-color: #2b79c1;
+  color: #fff;
+}
+
+.form-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  width: 100%;
+  border-radius: .25rem;
+  background-color: #f3f6fa;
+  padding: 1rem;
+  color: #1b476f;
+}
+
+
+
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/utilities";
+ */
+@tailwind utilities;
+
+/**
+ * Here you would add any custom utilities you need that don't come out of the
+ * box with Tailwind.
+ *
+ * Example :
+ *
+ * .bg-pattern-graph-paper { ... }
+ * .skew-45 { ... }
+ *
+ * Or if using a preprocessor or `postcss-import`:
+ *
+ * @import "utilities/background-patterns";
+ * @import "utilities/skew-transforms";
+ */
+
