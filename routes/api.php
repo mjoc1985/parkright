@@ -35,6 +35,8 @@ Route::group(['prefix' => 'bookings'], function (){
 
 Route::group(['prefix' => 'reports'], function (){
    Route::get('/schedule/preview', 'ReportController@schedulePreview'); 
+   Route::get('/schedule/export', 'ReportController@scheduleExport');
+   Route::get('/schedule/waivers', 'ReportController@waivers');
 });
 
 Route::group(['prefix' => 'webhooks'], function (){

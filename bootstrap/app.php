@@ -11,6 +11,9 @@
 |
 */
 
+use Maatwebsite\Excel\Sheet;
+use Maatwebsite\Excel\Writer;
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
@@ -40,6 +43,15 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
+Writer::macro('setCreator', function (Writer $writer, string $creator) {
+    $writer->getDelegate()->getProperties()->setCreator($creator);
+});
+Sheet::macro('setOrientation', function (Sheet $sheet, $orientation) {
+    $sheet->getDelegate()->getPageSetup()->setOrientation($orientation);
+});
+Sheet::macro('styleCells', function (Sheet $sheet, string $cellRange, array $style) {
+    $sheet->getDelegate()->getStyle($cellRange)->applyFromArray($style);
+});
 
 /*
 |--------------------------------------------------------------------------

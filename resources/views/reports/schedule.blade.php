@@ -1,7 +1,7 @@
 <table>
     <thead>
     <tr>
-        <th>Ref</th>
+        <th class="px-2">Ref</th>
         <th>Name</th>
         <th>TERM</th>
         <th>Stay</th>
@@ -11,25 +11,25 @@
         <th>Model</th>
         <th>Flight</th>
         <th>Mobile</th>
-        <th>PX</th>
+        <th>Px</th>
     </tr>
     </thead>
     <tbody>
     @foreach($bookings as $booking)
-        <tr>
-            <td>{{ $booking['ref']}}</td>
-            <td>{{ $booking['name'] }}</td>
-            <td>{{ $booking['terminal'] }}</td>
-            <td>{{ $booking['stay'] }}</td>
-            <td>{{ $booking['time'] }}</td>
-            @if(key_exists('return', $booking))
-            <td>{{ $booking['return'] }}</td>
-            @endif
-            <td>{{ $booking['vehicle_reg'] }}</td>
-            <td>{{ $booking['vehicle'] }}</td>
-            <td>{{ $booking['flight'] }}</td>
-            <td>{{ $booking['mobile'] }}</td>
-            <td>{{ $booking['passengers'] }}</td>
+        <tr class="border-b border-grey">
+            <td class="px-2"><strong>{{ $booking['ref']}}</strong></td>
+            <td class="px-2">{{ $booking['name'] }}</td>
+            <td class="px-2">{{ $booking['terminal'] }}</td>
+            <td class="px-2">{{ $booking['stay'] }}</td>
+            <td class="px=2">{{ $booking['time'] }}</td>
+          
+            <td class="px-2">{{ $booking['return'] }}</td>
+     
+            <td class="px-2">{{ $booking['vehicle_reg'] }}</td>
+            <td class="px-2">{{ $booking['vehicle'] }}</td>
+            <td class="px-2">{{ $booking['flight'] }}</td>
+            <td class="px-2">{{ $booking['mobile'] }}</td>
+            {{--<td>{{ $booking['passengers'] }}</td>--}}
         </tr>
     @endforeach
     </tbody>

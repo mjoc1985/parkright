@@ -18,7 +18,7 @@ class Schedule extends Model
         parent::__construct();
     }
 
-    public function processBookings($bookingCollection)
+    public function build($bookingCollection)
     {
 
         foreach ($bookingCollection['incoming'] as $booking) {
@@ -45,13 +45,13 @@ class Schedule extends Model
             'name'         => $this->getName($booking),
             'terminal'     => $booking['booking_data']['terminal_out'],
             'stay'         => $this->getLengthOfStay($booking),
-            'time'         => Carbon::createFromFormat('H:i', $booking['booking_data']['arrival_time']),
+            'time'         => Carbon::createFromFormat('H:i', $booking['booking_data']['arrival_time'])->format('H:i'),
             'return'       => $booking['booking_data']['return_date'] .' '. $booking['booking_data']['return_time'],
             'vehicle_reg'  => $booking['booking_data']['vehicle_reg'],
             'vehicle'      => $booking['booking_data']['vehicle'],
             'flight'       => $booking['booking_data']['flight_out'],
             'mobile'       => $booking['booking_data']['mobile'],
-            'passengers'   => $booking['booking_data']['passengers'],
+//            'passengers'   => $booking['booking_data']['passengers'],
             'sort'         => $this->createTimeStamp($booking['booking_data']['arrival_date'] .' '.$booking['booking_data']['arrival_time'])
         ];
     }
@@ -63,12 +63,13 @@ class Schedule extends Model
             'name'         => $this->getName($booking),
             'terminal'     => $booking['booking_data']['terminal_in'],
             'stay'         => $this->getLengthOfStay($booking),
-            'time'         => Carbon::createFromFormat('H:i', $booking['booking_data']['return_time']),
+            'time'         => Carbon::createFromFormat('H:i', $booking['booking_data']['return_time'])->format('H:i'),
             'vehicle_reg'  => $booking['booking_data']['vehicle_reg'],
             'vehicle'      => $booking['booking_data']['vehicle'],
             'flight'       => $booking['booking_data']['flight_in'],
             'mobile'       => $booking['booking_data']['mobile'],
-            'passengers'   => $booking['booking_data']['passengers'],       
+            'return'       => null,
+//            'passengers'   => $booking['booking_data']['passengers'],       
             'sort'         => $this->createTimeStamp($booking['booking_data']['return_date'].' '. $booking['booking_data']['return_time'])
         ];
     }

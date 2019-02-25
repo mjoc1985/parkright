@@ -23,7 +23,8 @@ Route::get('test', function (){
         'outgoing' => Booking::where('booking_data->return_date', '09-06-2018')->get()
     ]);
    $bookings = (new Schedule(Carbon::createFromFormat('d-m-Y', '09-06-2018')))->processBookings($collection);
-   return view('reports.schedule', compact('bookings'));
+   dd($bookings);
+   return view('reports.pdf-waiver', compact('bookings'));
 
 print_r($bookings);
     //return $collection;
