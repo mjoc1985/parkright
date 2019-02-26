@@ -106,7 +106,7 @@
     </tr>
 </table>
 
-<br><img style="z-index: -999;" src="{{ asset('/cars.png') }}"><br>
+<br><img style="z-index: -999;" src="{{ 'storage/cars.png' }}"><br>
 <span class="font-semibold">Further comments / codes etc:</span>
 <hr class="border border-black">
 <p>
