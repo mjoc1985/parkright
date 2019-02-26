@@ -16,6 +16,16 @@ class UserSeeder extends Seeder
             'email' => 'mike@skyparkingservices.co.uk',
             'name'  => 'Mike',
             'password' => bcrypt('secret')
+            ],
+            [
+                'email' => 'will@skyparkingservices.co.uk',
+                'name'  => 'Will',
+                'password' => bcrypt('Skyhigh12345')
+            ],
+            [
+                'email' => 'info@mcrgopark.co.uk',
+                'name'  => 'Admin',
+                'password' => bcrypt('secret')
             ]
     ]);
     }

@@ -19,6 +19,7 @@ class CreateBookingsTable extends Migration
             $table->string('ref');
             $table->json('booking_data');
             $table->json('notes')->nullable();
+            $table->string('status')->default('booked');
             $table->timestamps();
         });
     }
