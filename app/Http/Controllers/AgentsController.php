@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class AgentsController extends Controller
 {
+    public function all()
+    {
+        return Agents::all();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +35,7 @@ class AgentsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +46,7 @@ class AgentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Agents  $agents
+     * @param  \App\Agents $agents
      * @return \Illuminate\Http\Response
      */
     public function show(Agents $agents)
@@ -52,7 +57,7 @@ class AgentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Agents  $agents
+     * @param  \App\Agents $agents
      * @return \Illuminate\Http\Response
      */
     public function edit(Agents $agents)
@@ -63,8 +68,8 @@ class AgentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Agents  $agents
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Agents $agents
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Agents $agents)
@@ -75,7 +80,7 @@ class AgentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Agents  $agents
+     * @param  \App\Agents $agents
      * @return \Illuminate\Http\Response
      */
     public function destroy(Agents $agents)

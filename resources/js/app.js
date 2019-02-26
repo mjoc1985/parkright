@@ -1,6 +1,5 @@
 //import 'babel-polyfill';
-  require('./bootstrap');
-window.EventBus = new Vue();
+ // require('./bootstrap');
 
 
 import Vue from 'vue'
@@ -13,15 +12,16 @@ import App from './views/App';
 import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/themes/confetti.css';
 import Notifications from 'vue-notification';
-import VModal from 'vue-js-modal';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios);
-Vue.use(VModal, { dynamic: true});
 Vue.use(flatPickr);
 
 
 Vue.use(Notifications);
+import VModal from 'vue-js-modal';
+Vue.use(VModal, { dynamic: true});
+window.Vue = require('vue');
 
 
 window.axios = require('axios');
@@ -83,9 +83,10 @@ Vue.filter('capitalize', function (value) {
 App.router = Vue.router;
 
 Vue.component('DatePicker', require('vue-flatpickr-component'));
+window.EventBus = new Vue();
 
 // new Vue(App).$mount('#app');
-new Vue({
+const app =new Vue({
     el: '#app',
     template: '<App/>',
     components: { App },

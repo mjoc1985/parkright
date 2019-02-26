@@ -42,3 +42,7 @@ Route::group(['prefix' => 'reports'], function (){
 Route::group(['prefix' => 'webhooks'], function (){
    Route::post('email/import', 'WebhookController@emailImport'); 
 });
+
+Route::group(['prefix' => 'agents'], function (){
+    Route::get('/', 'AgentsController@all');
+});

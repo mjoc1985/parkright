@@ -192,7 +192,22 @@ a {
   color: #1b476f;
 }
 
-
+.form-select-caret {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #1b476f;
+}
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your

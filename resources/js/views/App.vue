@@ -6,10 +6,12 @@
         <div class="flex-1">
             <div class="w-full max-w-screen mx-auto px-4 flex py-8">
                 <router-view v-on:loaded=" loading = !loading"></router-view>
+
             </div>   
         </div>
-        <notifications :duration=5000 :speed=600 classes="vue-notification animated slideInRight"/>
         <modals-container></modals-container>
+
+        <notifications :duration=5000 :speed=600 classes="vue-notification animated slideInRight"/>
     </div>
 </template>
 <script>
@@ -17,7 +19,7 @@
     import Login from '../views/Login'
 
     export default {
-        name: 'App',
+        // name: 'App',
         components: {NavBar, Login},
         data() {
             return {

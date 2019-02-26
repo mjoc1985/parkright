@@ -44,8 +44,10 @@ class BookingsImport implements ToModel, WithHeadingRow
             'price_paid' => $row['price_paid'],
             'supplier_cost' => $row['supplier_cost'],
             //'passengers' => $row['passengers']
-
         ];
+        if (key_exists('passengers', $row)){
+            $bookingData['passengers'] = $row['passengers'];
+        }
         if ($booking = Booking::where('ref', $row['booking_ref'])->first()) {
             $booking->status = $row['status'];
             $booking->booking_data = $bookingData;
