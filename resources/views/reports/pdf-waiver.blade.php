@@ -118,8 +118,7 @@
     <br>
     <span style="text-decoration: underline;" class="underline font-semibold"><b>Vehicle Return</b></span>
     <br>
-    By signing this form I confirm that my vehicle has been checked and is in acceptable condition and that I relinquish
-    <br> Go Park from all further responsibilities regarding my vehicle.
+    By signing this form I confirm that my vehicle has been checked and is in acceptable condition and that I relinquish Go Park from all further responsibilities regarding my vehicle.
     <br>
     <br>
     <span style="font-size:18px" class="font-semibold text-xl">Customer Signature</span>..........................................................................................................................
