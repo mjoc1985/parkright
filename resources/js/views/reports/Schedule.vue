@@ -40,11 +40,11 @@
                     </div> <!-- end card body -->
 
                     <div class="card-footer">
-                        <button @click.prevent="waiver" class="btn btn-primary">Waivers</button>
+                        <button @click.prevent="waiver" class="btn btn-primary"><i class="fas fa-file-download mr-2"></i>Waivers</button>
 
-                        <button @click.prevent="download" class="btn btn-primary">Download</button>
+                        <button @click.prevent="download" class="btn btn-primary"><i class="fas fa-download mr-2"></i>Download Schedule</button>
 
-                        <button @click.prevent="preview" class="btn btn-primary">Preview</button>
+                        <button @click.prevent="preview" class="btn btn-primary"><i class="fas fa-eye mr-2"></i>Preview</button>
 
                     </div>
                 </div>

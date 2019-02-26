@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Agents;
+use App\Product;
 use Illuminate\Http\Request;
 
-class AgentsController extends Controller
+class ProductController extends Controller
 {
     public function all()
     {
-        return Agents::all();
+        return Product::all();
     }
 
     /**
@@ -46,10 +46,10 @@ class AgentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Agents $agents
+     * @param  \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Agents $agents)
+    public function show(Product $product)
     {
         //
     }
@@ -57,38 +57,40 @@ class AgentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Agents $agents
+     * @param  \App\Product $product
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-       return Agents::find($id);
+        return Product::find($id);
     }
 
-
     /**
-     * @param Request $request
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
      * @param $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        Agents::find($id)->update($request->all());
-
+        $product = Product::find($id);
+        
+        $product->update($request->all());
+        
         return response([
             'status' => 'success',
-            'msg' => 'Agent updated.'
+            'msg' => 'Product updated.'
         ]);
-        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Agents $agents
+     * @param  \App\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agents $agents)
+    public function destroy(Product $product)
     {
         //
     }

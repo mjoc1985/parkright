@@ -21,10 +21,26 @@
                     </li>
                     <li>
                         <router-link
+                                :to="{path: '/agents'}"
+                                class="flex items-center no-underline">
+                            <i class="fas fa-users fill-current mr-2 hover:text-primary text-grey-dark"></i>
+                            Agents
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link
                                 :to="{path: '/bookings'}"
                                 class="flex items-center no-underline">
                                 <i class="fas fa-calendar-alt fill-current mr-2 hover:text-primary text-grey-dark"></i>
                             Bookings
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link
+                                :to="{path: '/products'}"
+                                class="flex items-center no-underline">
+                            <i class="fas fa-car fill-current mr-2 hover:text-primary text-grey-dark"></i>
+                            Products
                         </router-link>
                     </li>
                     <li>

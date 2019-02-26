@@ -60,6 +60,38 @@ export default [
         meta: {
             auth: true
         }
+    },
+    {
+        path: '/agents',
+        name: 'agents-index',
+        components: require('../views/agents/Index'),
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/agents/:id/edit',
+        name: 'agents-edit',
+        components: require('../views/agents/Agent'),
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/products',
+        name: 'product-index',
+        components: require('../views/products/Index'),
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/products/:id/edit',
+        name: 'product-edit',
+        components: require('../views/products/Product'),
+        meta: {
+            auth: true
+        }
     }
 
 

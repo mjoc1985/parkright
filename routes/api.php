@@ -45,4 +45,12 @@ Route::group(['prefix' => 'webhooks'], function (){
 
 Route::group(['prefix' => 'agents'], function (){
     Route::get('/', 'AgentsController@all');
+    Route::get('{id}/edit', 'AgentsController@edit');
+    Route::post('{id}/update', 'AgentsController@update');
+});
+
+Route::group(['prefix' => 'products'], function() {
+   Route::get('/', 'ProductController@all');
+   Route::get('{id}/edit', 'ProductController@edit');
+   Route::post('{id}/update', 'ProductController@update');
 });
