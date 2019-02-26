@@ -3,14 +3,29 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Waiver</title>
-    <link href="{{ public_path('/css/app.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+    {{--<link href="{{ public_path('/css/app.css') }}" rel="stylesheet" type="text/css"/>--}}
     <style>@page {
             margin: 20px 20px;
+            
+        }
+        table {
+            border: 1px solid black;
+        }
+        tr, th, td {
+            border: 1px solid black;
+        }
+        img {
+            
+            max-height: 25%;
         }
 
         body {
             margin: 0;
             text-indent: 0;
+            font-family: sans-serif;
+            line-height: 1.4;
         }
 
         p {
@@ -75,8 +90,9 @@
     car park as required to avoid obstructions, in emergency and during busy periods. Please fill in any
     damage
     on the diagram e.g. S for scratch, D for dent, C for chip.</p>
-<p class="font-semibold my-4">Special Instructions:</p>
-<hr class="border border-black mt-2">
+<br>
+<p class="font-semibold my-4"><b>Special Instructions:</b></p>
+<hr style="margin-bottom: 25px;" class="border border-black mt-2">
 <hr class="border border-black mt-6 mb-2">
 <table class="border-2 border-black my-2" cellspacing="0" cellpadding="2" width="180"
        align="right">
@@ -90,23 +106,23 @@
     </tr>
 </table>
 
-<br><img style="z-index: -999" src="{{ asset('/cars.png') }}">
+<br><img style="z-index: -999;" src="{{ asset('/cars.png') }}"><br>
 <span class="font-semibold">Further comments / codes etc:</span>
 <hr class="border border-black">
-<p style="page-break-after: ">
+<p>
     I hereby agree to Go Park Ltd terms and conditions
     <br>
     <br>
-    <span class="font-semibold text-xl">Customer Signature</span>..........................................................................................................................
+    <span style="font-size:18px" class="font-semibold text-xl">Customer Signature</span>..........................................................................................................................
     <br>
     <br>
-    <span class="underline font-semibold">Vehicle Return</span>
+    <span style="text-decoration: underline;" class="underline font-semibold"><b>Vehicle Return</b></span>
     <br>
     By signing this form I confirm that my vehicle has been checked and is in acceptable condition and that I relinquish
     <br> Go Park from all further responsibilities regarding my vehicle.
     <br>
     <br>
-    <span class="font-semibold text-xl">Customer Signature</span>..........................................................................................................................
+    <span style="font-size:18px" class="font-semibold text-xl">Customer Signature</span>..........................................................................................................................
 </p>
 
 

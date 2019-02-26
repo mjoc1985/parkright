@@ -80,4 +80,7 @@
   'nunito' => array(
     'normal' => $fontDir . '/2ee5a7797d02fe4d560048b698835802',
   ),
+  'lato' => array(
+    'normal' => $fontDir . '/843408289ed93065db923c22a1884cc5',
+  ),
 ) ?>
