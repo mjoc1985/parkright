@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AgentProduct;
 use App\Agents;
 use Illuminate\Http\Request;
 
@@ -80,6 +81,29 @@ class AgentsController extends Controller
             'msg' => 'Agent updated.'
         ]);
         
+    }
+    
+    public function getProducts($id)
+    {
+        return AgentProduct::where('agent_id', $id)->with('product')->get();
+    }
+    
+    public function saveProduct(Request $request)
+    {
+        $product = AgentProduct::create($request->all());
+        return response([
+            'status' => 'Success.',
+            'msg' => 'Product created.'
+        ]);
+    }
+    public function updateProduct(Request $request, $id)
+    {
+         AgentProduct::find($id)->update($request->all());
+        
+        return response([
+            'status' => 'Success.',
+            'msg' => 'Product created.'
+        ]);
     }
 
     /**

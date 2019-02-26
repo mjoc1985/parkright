@@ -12,4 +12,9 @@ class Agents extends Model
     {
         return $this->hasMany(Booking::class);
     }
+    
+    public function agentProducts()
+    {
+        return $this->hasMany(AgentProduct::class);
+    }
 }

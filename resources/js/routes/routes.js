@@ -78,6 +78,30 @@ export default [
         }
     },
     {
+        path: '/agents/:id/products',
+        name: 'agents-products-index',
+        components: require('../views/agents/AgentProductsIndex'),
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/agents/:id/products/:product.id/edit',
+        name: 'agents-products-edit',
+        components: require('../views/agents/AgentProduct'),
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/agents/:id/products/create',
+        name: 'agents-products-create',
+        components: require('../views/agents/CreateAgentProduct'),
+        meta: {
+            auth: true
+        }
+    },
+    {
         path: '/products',
         name: 'product-index',
         components: require('../views/products/Index'),

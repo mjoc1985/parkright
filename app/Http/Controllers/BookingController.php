@@ -33,6 +33,7 @@ class BookingController extends Controller
         }
         $bookings->getCollection()->transform(function ($booking) {
             $booking->agent = $booking->agent;
+            $booking->product = $booking->agentProduct($booking->booking_data['product_id']);
             return $booking;
         });
         return response([

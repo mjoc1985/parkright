@@ -15,12 +15,17 @@ class Booking extends Model
     {
         return $this->belongsTo(Agents::class);
     }
+    public function agentProduct($code)
+    {
+       return AgentProduct::where('agent_code', $code)->first();
+    }
 
     public function toSearchableArray()
     {
         return [
             'id' => $this->id,
             'ref' => $this->ref,
+            'product_id' => $this->booking_data['product_id'],
             'first_name' => $this->booking_data['first_name'],
             'last_name' => $this->booking_data['last_name'],
             'phone' => $this->booking_data['phone'],

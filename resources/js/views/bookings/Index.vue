@@ -16,7 +16,7 @@
                             <th class="px-2">Arriving</th>
                             <th class="px-2">Leaving</th>
                             <th class="px-2">Vehicle</th>
-                            <th class="px-2 text-left">Agent</th>
+                            <th class="px-2">Agent/Product</th>
                             <th class="pr-10">&nbsp</th>
                         </tr>
                         </thead>
@@ -48,7 +48,11 @@
                                 <span class="block text-xs">{{booking.booking_data.vehicle_colour}} {{booking.booking_data.vehicle}}</span>
 
                             </td>
-                            <td class="py-4 px-2 w-48 font-semibold text-primary-dark">{{booking.agent.name}}</td>
+                            <td class="py-4 px-2 w-48 font-semibold text-primary-black text-center">
+                                {{booking.agent.name}}
+                                <span class="block text-xs text-center text-primary">{{booking.product.name}}</span>
+                            </td>
+
 
                             <td class="py-4">
                                 <router-link :to="{name: 'booking-edit', params:{id:booking.id}}"

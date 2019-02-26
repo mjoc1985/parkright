@@ -43,6 +43,7 @@ class BookingsImport implements ToModel, WithHeadingRow
             'list_price' => $row['list_price'],
             'price_paid' => $row['price_paid'],
             'supplier_cost' => $row['supplier_cost'],
+            'product_id' => $row['product_id']
             //'passengers' => $row['passengers']
         ];
         if (key_exists('passengers', $row)){
