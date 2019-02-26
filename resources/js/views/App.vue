@@ -6,12 +6,12 @@
         <div class="flex-1">
             <div class="w-full max-w-screen mx-auto px-4 flex py-8">
                 <router-view v-on:loaded=" loading = !loading"></router-view>
+                <notifications :duration=5000 :speed=600 classes="vue-notification animated slideInRight"></notifications>
 
             </div>   
         </div>
         <modals-container></modals-container>
 
-        <notifications :duration=5000 :speed=600 classes="vue-notification animated slideInRight"/>
     </div>
 </template>
 <script>
