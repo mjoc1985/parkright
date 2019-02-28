@@ -18,27 +18,33 @@ class ReportController extends Controller
 {
     public function schedulePreview(Request $request)
     {
-        $bookings = $this->fetchBookings($request['date']);
+        $bookings = $this->fetchBookings($request['date'], $request['type']);
         return view('reports.schedule', compact('bookings'));
 
     }
 
-    public function fetchBookings($date)
+    public function fetchBookings($date, $type = null)
     {
-        $collection = collect([
-            'incoming' => Booking::where('booking_data->arrival_date', '=', $date)->get(),
-            'outgoing' => Booking::where('booking_data->return_date', $date)->get()
-        ]);
-        
-        return (new Schedule(Carbon::createFromFormat('d-m-Y', $date)))->build($collection);
+        $collection = collect();
+        $incoming = Booking::where('booking_data->arrival_date', '=', $date)->get();
+        $outgoing = Booking::where('booking_data->return_date', $date)->get();
+
+        if ($type == 'both' || $type == 'in') {
+           $collection->put('incoming', $incoming);
+        } elseif ($type == 'both' || $type == 'out') {
+            $collection->put('outgoing', $outgoing);
+        }
+
+
+        return (new Schedule(Carbon::createFromFormat('d-m-Y', $date)))->build($collection->toArray());
     }
 
     public function scheduleExport(Request $request)
     {
-        return $export = (new ScheduleExport($this->fetchBookings($request['date'])))->download($request['date'] . '.xls');
-        
+        return $export = (new ScheduleExport($this->fetchBookings($request['date'], $request['type'])))->download($request['date'] . '.xls');
+
     }
-    
+
     public function waivers(Request $request)
     {
         set_time_limit(0);
@@ -49,7 +55,7 @@ class ReportController extends Controller
         $pdf = PDF::loadHtml($html);
         //$pdf->setBasePath('/css/app.css');
         return $pdf->stream('waivers.pdf');
-      
+
     }
 
 

@@ -20,17 +20,21 @@ class Schedule extends Model
 
     public function build($bookingCollection)
     {
+       
+        if (key_exists('incoming', $bookingCollection)) {
+            foreach ($bookingCollection['incoming'] as $booking) {
 
-        foreach ($bookingCollection['incoming'] as $booking) {
 
-            
-            $this->bookings->push($this->setArrivalsData($booking));
+                $this->bookings->push($this->setArrivalsData($booking));
+            }
+        }
+        if (key_exists('outgoing', $bookingCollection)) {
+            foreach ($bookingCollection['outgoing'] as $booking) {
+                $this->bookings->push($this->setReturnsData($booking));
+            }
         }
         
-        foreach ($bookingCollection['outgoing'] as $booking)
-        {
-            $this->bookings->push($this->setReturnsData($booking));
-        }
+        //return $this->bookings;
 
         $sorted = $this->bookings->sortBy(function ($obj, $key) {
             return strtotime($obj['sort']);

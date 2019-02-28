@@ -18,12 +18,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 Route::get('test', function (){
-    $collection = collect([
-        'incoming' => Booking::where('booking_data->arrival_date', '=', '09-06-2018')->get(),
-        'outgoing' => Booking::where('booking_data->return_date', '09-06-2018')->get()
-    ]);
-   $bookings = (new Schedule(Carbon::createFromFormat('d-m-Y', '09-06-2018')))->processBookings($collection);
-   dd($bookings);
+    dd(strtotime('43527'));
+    $date = Carbon::createFromFormat('d/m/Y H:i:s', strtotime('43527'));
+    dd($date);
    return view('reports.pdf-waiver', compact('bookings'));
 
 print_r($bookings);

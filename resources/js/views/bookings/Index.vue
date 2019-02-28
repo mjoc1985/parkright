@@ -5,7 +5,7 @@
                 <h1>Bookings</h1>
                 <search-bookings @bookings="updateBookings"></search-bookings>
                 <template>
-                <import-button class="sm:hidden"></import-button>
+                <import-button class="sm:hidden md:inline"></import-button>
                 </template>
             </div>
             <div class="card-body p-0">
@@ -15,16 +15,16 @@
                         <tr>
                             <th class="md:pl-10"># Ref</th>
                             <th class="md:px-2 md:pl-10 text-left">Cust<span class="sm:hidden md:inline">omer</span></th>
-                            <th class="px-2 overflow-y-hidden">Arr<span class="sm:hidden md:inline">iving</span></th>
+                            <th class="px-2">Arr<span class="sm:hidden md:inline">iving</span></th>
                             <th class="px-2">Depart<span class="sm:hidden md:inline">ing</span></th>
                             <th class="px-2">Veh<span class="sm:hidden md:inline">icle</span></th>
-                            <th class="px-2 sm:hidden md:inline">Agent/Product</th>
+                            <th class="px-2 sm:hidden md:block">Agent/Product</th>
                             <th class="pr-10">&nbsp</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        <tr class="text-sm border-b border-grey-lighter sm:text-xs " v-for="booking in bookings">
+                        <tr class="md:text-sm border-b border-grey-lighter sm:text-xs " v-for="booking in bookings">
                             <td class="md:py-4 md:pl-10 text-primary-black text-center font-semibold w-32">
                                 {{booking.ref}}
                                 <span v-if="booking.status === 'booked'" class="py-1 px-2 font-bold rounded text-center text-xs text-green uppercase bg-green-lightest">{{booking.status}}</span>
@@ -50,7 +50,7 @@
                                 <span class="block text-xs">{{booking.booking_data.vehicle_colour}} {{booking.booking_data.vehicle}}</span>
 
                             </td>
-                            <td class="md:py-4 md:inline sm:hidden px-2 w-48 font-semibold text-primary-black text-center">
+                            <td class="md:py-4 md:table-cell sm:hidden px-2 w-48 font-semibold text-primary-black text-center">
                                 {{booking.agent.name}}
                                 <span class="block text-xs text-center text-primary">{{booking.product.name}}</span>
                             </td>

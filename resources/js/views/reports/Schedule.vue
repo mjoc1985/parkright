@@ -25,11 +25,24 @@
                             </div>
                             <div class="w-2/3 p-4 text-primary-black float-left">
                                 <div class="w-full">
-                                    <div class="font-semibold pr-2 clearfix">
+                                    <div class="font-semibold clearfix">
                                         <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
                                             <label>Select Date</label>
                                             <date-picker :config="config" class="form-input"
                                                          v-model="date"></date-picker>
+                                        </div>
+                                    </div>
+                                    <div class="font-semibold clearfix">
+                                        <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
+                                            <label>Report Type</label>
+                                            <div class="relative">
+                                                <select class="form-input" name="type" v-model="type">
+                                                    <option value="in">Incoming</option>
+                                                    <option value="out">Outgoing</option>
+                                                    <option value="both">Incoming & Outgoing</option>
+                                                </select>
+                                                <div class="form-select-caret"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -70,6 +83,7 @@
                     altFormat: 'l J F, Y',
                     dateFormat: 'd-m-Y'
                 },
+                type: 'both',
                 previewData: {
                     date: null,
                     view: null
@@ -81,7 +95,7 @@
         },
         methods: {
             download() {
-                axios.get('/reports/schedule/export' + '?date=' + this.date, {responseType: 'arraybuffer'})
+                axios.get('/reports/schedule/export' + '?date=' + this.date + '&type=' + this.type, {responseType: 'arraybuffer'})
                     .then(response => {
                         console.log(response);
                         const blob = new Blob([response.data], {type: 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
@@ -90,12 +104,12 @@
                         console.log(link);
                         console.log(link.download);
                         link.href = window.URL.createObjectURL(blob);
-                        link.download = this.date + '.xls';
+                        link.download = this.type + '_' + this.date + '.xls';
                         link.click();
                     })
             },
             preview() {
-                axios.get('/reports/schedule/preview' + '?date=' + this.date)
+                axios.get('/reports/schedule/preview' + '?date=' + this.date + '&type=' + this.type)
                     .then(response => {
                         this.previewData.date = this.date;
                         this.previewData.view = response.data

@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class LCSBookingImport implements ToModel, WithHeadingRow
 {
@@ -48,9 +49,9 @@ class LCSBookingImport implements ToModel, WithHeadingRow
             'vehicle_colour' => null,
             'list_price' =>$row['paid'],
             'price_paid' => $row['paid'],
-            'supplier_cost' => $row['paid'] / 100 * 75,
-            'product_id' => $row['product']
-            //'passengers' => $row['passengers']
+            'supplier_cost' => (float)$row['paid'] / 100 * 75,
+            'product_id' => $row['product'],
+            'passengers' => $row['pass']
         ];
         if (key_exists('passengers', $row)){
             $bookingData['passengers'] = $row['passengers'];
@@ -77,7 +78,18 @@ class LCSBookingImport implements ToModel, WithHeadingRow
     public function getDate($date)
     {
        // $newDate = preg_replace('~\x{00a0}~u', ' ', $date);
-        $newDate = Carbon::parse(strtotime($date));
+      $newDate = Carbon::createFromFormat('d/m/Y', $date);
         return $newDate->format('d-m-Y');
     }
+
+//    /**
+//     * @return array
+//     */
+//    public function columnFormats(): array
+//    {
+//        return [
+//            'E' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+//            'G' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+//        ];
+//    }
 }
