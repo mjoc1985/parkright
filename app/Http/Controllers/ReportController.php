@@ -31,10 +31,11 @@ class ReportController extends Controller
 
         if ($type == 'both' || $type == 'in') {
            $collection->put('incoming', $incoming);
-        } elseif ($type == 'both' || $type == 'out') {
+        } if ($type == 'both' || $type == 'out') {
             $collection->put('outgoing', $outgoing);
         }
 
+        
 
         return (new Schedule(Carbon::createFromFormat('d-m-Y', $date)))->build($collection->toArray());
     }
