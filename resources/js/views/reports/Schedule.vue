@@ -26,7 +26,7 @@
                             <div class="w-2/3 p-4 text-primary-black float-left">
                                 <div class="w-full">
                                     <div class="font-semibold pr-2 clearfix">
-                                        <div class="md:w-3/4 float-left md:pr-2 ">
+                                        <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
                                             <label>Select Date</label>
                                             <date-picker :config="config" class="form-input"
                                                          v-model="date"></date-picker>
