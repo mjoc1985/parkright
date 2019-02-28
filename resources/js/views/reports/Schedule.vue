@@ -40,11 +40,11 @@
                     </div> <!-- end card body -->
 
                     <div class="card-footer sm:block">
-                        <button @click.prevent="preview" class="btn btn-primary md:inline sm:block sm:my-2 sm:w-full"><i class="fas fa-eye mr-2"></i>Preview</button>
+                        <button @click.prevent="preview" class="btn btn-primary md:inline sm:block sm:my-2 md:w-auto sm:w-full"><i class="fas fa-eye mr-2"></i>Preview</button>
 
-                        <button @click.prevent="waiver" class="btn btn-primary md:inline sm:block sm:my-2 sm:w-full"><i class="fas fa-file-download mr-2"></i>Waivers</button>
+                        <button @click.prevent="waiver" class="btn btn-primary md:inline sm:block sm:my-2 md:w-auto sm:w-full"><i class="fas fa-file-download mr-2"></i>Waivers</button>
 
-                        <button @click.prevent="download" class="btn btn-primary md:inline sm:block sm:my-2 sm:w-full"><i class="fas fa-download mr-2"></i>Download Schedule</button>
+                        <button @click.prevent="download" class="btn btn-primary md:inline sm:block sm:my-2 md:w-auto sm:w-full"><i class="fas fa-download mr-2"></i>Download Schedule</button>
 
 
                     </div>
