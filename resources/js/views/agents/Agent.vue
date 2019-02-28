@@ -4,12 +4,12 @@
             <ul class="list-reset md:mb-8 sm:mt-4 sm:p-4 sm:inline-flex md:block">
                 <div class="text-primary-black pb-3 font-bold uppercase md:block sm:block">Agent</div>
                 <!--<li><router-link :to="{path: '/reports'}" class="py-2"><i class="fas fa-th mr-2"></i>Overview</router-link></li>-->
-                <li class="sm:px-4">
+                <li class="sm:px-4 md:px-0">
                     <router-link :to="{name: 'agents-edit', params:{id:agent.id}}" class="py-2"><i
                             class="fas fa-wrench mr-2"></i>Setup
                     </router-link>
                 </li>
-                <li class="sm:px-4">
+                <li class="sm:px-4 md:px-4">
                     <router-link :to="{name: 'agents-products-index', params:{id:agent.id}}" class="py-2"><i
                             class="fas fa-car mr-2"></i>Products
                     </router-link>
