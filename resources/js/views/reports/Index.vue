@@ -1,6 +1,6 @@
 <template>
-    <main class="flex w-full">
-        <nav class=" lg:block lg:w-1/6 mr-8">
+    <main class="md:flex sm:block w-full">
+        <nav class="md:block md:w-1/6 md:mr-8 sm:w-full">
             <ul class="list-reset mb-8">
                 <div class="text-primary-black pb-3 font-bold uppercase">Reports</div>
                 <!--<li><router-link :to="{path: '/reports'}" class="py-2"><i class="fas fa-th mr-2"></i>Overview</router-link></li>-->

@@ -1,10 +1,10 @@
 <template>
-    <div id="app" class="min-h-screen flex flex-col">
+    <div id="app" class="min-h-screen md:flex md:flex-col">
         <nav-bar v-if="this.$auth.ready() && this.$auth.check()"></nav-bar>
         <login v-if="this.$auth.ready() && !this.$auth.check()"></login>
 
         <div class="flex-1">
-            <div class="w-full max-w-screen mx-auto px-4 flex py-8">
+            <div class="w-full max-w-screen md:mx-auto md:px-4 flex md:py-8">
                 <router-view v-on:loaded=" loading = !loading"></router-view>
                 <notifications :duration=5000 :speed=600 classes="vue-notification animated slideInRight"></notifications>
 

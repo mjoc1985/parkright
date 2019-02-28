@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Agents;
 use App\Booking;
 use App\Imports\BookingsImport;
+use App\Imports\LCSBookingImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -14,7 +15,13 @@ class BookingController extends Controller
     {
        // return request()->all();
         $agent = Agents::find(request('agent'));
-        Excel::import(new BookingsImport($agent), request()->file('file'));
+        //return $agent;
+        $file = \request()->file('file');
+        if ($agent->slug == 'LCS') {
+            Excel::import(new LCSBookingImport($agent), $file);
+        } else {
+            Excel::import(new BookingsImport($agent), $file);
+        }
         
         return response([
             'status' => 'success',

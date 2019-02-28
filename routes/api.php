@@ -50,8 +50,8 @@ Route::group(['prefix' => 'agents'], function (){
     Route::get('{id}/products', 'AgentsController@getProducts');
     Route::get('{id}/products/create', 'AgentsController@createProduct');
     Route::post('products/store', 'AgentsController@saveProduct');
-    Route::post('products/{productId}/update', 'AgentsController@updateProduct');
-    Route::get('{id}/products/{productId}/edit', 'AgentsController@editProduct');
+    Route::post('products/{product}/update', 'AgentsController@updateProduct');
+    Route::get('products/{product}/edit', 'AgentsController@getProduct');
     
 });
 

@@ -87,6 +87,10 @@ class AgentsController extends Controller
     {
         return AgentProduct::where('agent_id', $id)->with('product')->get();
     }
+    public function getProduct($id)
+    {
+        return AgentProduct::find($id)->load('product');
+    }
     
     public function saveProduct(Request $request)
     {
@@ -98,7 +102,7 @@ class AgentsController extends Controller
     }
     public function updateProduct(Request $request, $id)
     {
-         AgentProduct::find($id)->update($request->all());
+         AgentProduct::find($id)->update($request->except('product'));
         
         return response([
             'status' => 'Success.',

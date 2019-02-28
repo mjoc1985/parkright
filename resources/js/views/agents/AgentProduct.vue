@@ -1,15 +1,15 @@
 <template>
-    <main v-if="product" class="flex w-full">
-        <nav class=" lg:block lg:w-1/6 mr-8">
-            <ul class="list-reset mb-8">
+    <main v-if="agent" class="md:flex sm:block w-full">
+        <nav class=" sm:block md:block md:w-1/6 sm:w-full mr-8">
+            <ul class="list-reset md:mb-8 sm:mt-4 sm:p-4 sm:inline-flex md:block">
                 <div class="text-primary-black pb-3 font-bold uppercase">Product</div>
                 <!--<li><router-link :to="{path: '/reports'}" class="py-2"><i class="fas fa-th mr-2"></i>Overview</router-link></li>-->
-                <li>
+                <li class="sm:px-4">
                     <router-link :to="{name: 'agents-edit', params:{id:agent.id}}" class="py-2"><i
                             class="fas fa-wrench mr-2"></i>Setup
                     </router-link>
                 </li>
-                <li>
+                <li class="sm:px-4">
                     <router-link :to="{name: 'agents-products-index', params:{id:agent.id}}" class="py-2"><i
                             class="fas fa-car mr-2"></i>Products
                     </router-link>
@@ -17,15 +17,14 @@
 
             </ul>
         </nav>
-        <div class="flex-1">
+        <div class="md:flex-1">
             <div class="card ">
-                <div class="card-header flex">
-                    <h1>{{product.id}} - {{product.name}}</h1>
-                    <router-link class="btn py-2 text-primary" :to="{name: 'agents-edit', params:{id:agent.id}}">Back</router-link>
+                <div class="card-header sm:p-4 flex">
+                    <h1>{{agent.name}} - Edit {{product.name}} product</h1>
                 </div>
                 <div class="card-body clearfix">
                     <div class="w-full clearfix my-2">
-                        <div class="w-1/3 p-4 pl-10 float-left">
+                        <div class="w-1/3 p-4 md:pl-10 float-left">
                             <h3 class="text-primary-black">Product Setup</h3>
                         </div>
                         <div class="w-2/3 p-4 text-primary-black float-left">
@@ -37,21 +36,24 @@
                                 </div>
                             </div>
                             <div class="w-full flex justify-between mt-4">
-                                <div class="font-semibold w-full ">
-                                    <label>Type</label>
+                                <div class="font-semibold w-full">
+                                    <label>Linked Product</label>
                                     <div class="relative">
-                                        <select v-model="product.type" class="form-input">
-                                            <option value="Park and Ride">Park and Ride</option>
-                                            <option value="Undercover M&G">Undercover M&G</option>
-                                            <option value="Meet and Greet">Meet and Greet</option>
-                                            <option value="Return M&G">Return M&G</option>
+                                        <select v-model="product.product_id" class="form-input">
+                                            <option v-for="prod in products" :value="prod.id">{{prod.name}}</option>
                                         </select>
-                                        <div class="form-select-caret">
-                                            <i class="fas fa-caret-down"></i>
-                                        </div>
+                                        <div class="form-select-caret"><i class="fas fa-caret-down"></i></div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="w-full flex justify-between mt-4">
+                                <div class="font-semibold w-full">
+                                    <label>Agent Product Code/Id</label>
+                                    <input v-model="product.agent_code" type="text" placeholder="Product code"
+                                           class="form-input">
+                                </div>
+                            </div>
+
 
 
                         </div>
@@ -76,7 +78,9 @@
 
         data() {
             return {
-                product: null
+                product: null,
+                agent: null,
+                products: null
             }
         },
         created() {
@@ -84,13 +88,21 @@
         },
         methods: {
             fetch() {
-                axios.get('agents/' + this.$route.params.id + '/products/' + this.$route.params.product.id + '/edit')
-                    .then(response => {
-                        this.product = response.data;
-                    })
+                axios.all([
+                    axios.get('agents/' + this.$route.params.id + '/edit'),
+                    axios.get('agents/products/' + this.$route.params.product + '/edit'),
+                    axios.get('products')
+                ])
+                    .then(axios.spread(function (agent, product, products) {
+                        this.product = product.data;
+                        this.agent = agent.data;
+                        this.products = products.data;
+                        //this.product.agent_id = this.agent.id;
+                    }.bind(this)))
+
             },
             save() {
-                axios.post('agents/' + this.agent.id +'/products/' + this.product.id + '/update', this.$data.product)
+                axios.post('agents/products/' + this.product.id + '/update', this.$data.product)
                     .then(response => {
                         this.$notify({
                             type: 'success',

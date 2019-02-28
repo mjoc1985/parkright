@@ -2,10 +2,10 @@
 
     <div v-if="agent" class="flex-1">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header sm:p-4">
                 <h1>{{agent.name}} - Products</h1>
                 
-                    <router-link :to="{name: 'agents-products-create', params:{id:agent.id}}" class="py-2 btn btn-primary"><i
+                    <router-link :to="{name: 'agents-products-create', params:{id:agent.id}}" class=" py-2 btn btn-primary"><i
                             class="fas fa-plus-circle mr-2"></i>Create
                     </router-link>
                 
@@ -17,7 +17,7 @@
                         <tr>
                             <th class="pl-10">#</th>
                             <th class="px-2 pl-10 text-left">Product Name</th>
-                            <th class="px-2 text-left">Linked Product</th>
+                            <th class="px-2 text-left sm:hidden md:block">Linked Product</th>
                             <th class="px-2 text-left">Agent Code</th>
                             <th class="pr-10">&nbsp</th>
                         </tr>
@@ -31,7 +31,7 @@
                             <td class="py-4 pl-10 px-2">
                                 <span class="font-semibold text-primary-black">{{product.name}}</span>
                             </td>
-                            <td class="py-4 px-2">
+                            <td class="py-4 px-2 sm:hidden md:block">
                                 <span class="font-semibold text-left text-primary-black">{{product.product.name}}</span>
                             </td>
 
@@ -40,7 +40,7 @@
                             </td>
 
                             <td class="py-4">
-                                <router-link :to="{name: 'product-edit', params:{id:product.id}}"
+                                <router-link :to="{name: 'agents-products-edit', params:{product:product.id}}"
                                              class="btn btn-sm text-primary">
                                     Manage
                                 </router-link>

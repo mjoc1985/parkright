@@ -1,10 +1,10 @@
 <template>
-    <main v-if="agent" class="flex w-full">
-        <nav class=" lg:block lg:w-1/6 mr-8">
+    <main v-if="agent" class="md:flex sm:block w-full">
+        <nav class=" sm:block md:block md:w-1/6 sm:w-full mr-8">
             <ul class="list-reset mb-8">
                 <div class="text-primary-black pb-3 font-bold uppercase">Product</div>
                 <!--<li><router-link :to="{path: '/reports'}" class="py-2"><i class="fas fa-th mr-2"></i>Overview</router-link></li>-->
-                <li>
+                <li>    
                     <router-link :to="{name: 'agents-edit', params:{id:agent.id}}" class="py-2"><i
                             class="fas fa-wrench mr-2"></i>Setup
                     </router-link>
@@ -17,7 +17,7 @@
 
             </ul>
         </nav>
-        <div class="flex-1">
+        <div class="md:flex-1">
             <div class="card ">
                 <div class="card-header flex">
                     <h1>{{agent.name}} - Edit {{product.name}} product</h1>
@@ -90,16 +90,17 @@
         },
         created() {
             this.fetch()
+            console.log(this.$route.params)
         },
         methods: {
-            fetch() {
+            fetch() {  
                 axios.all([
                     axios.get('agents/' + this.$route.params.id + '/edit'),
-                    axios.get('products/' + this.$route.params.product + '/edit')
+                    axios.get('agents/products/' + this.$route.params.product + '/edit')
                 ])
-                    .then(axios.spread(function (agentRepsonse, productResponse) {
+                    .then(axios.spread(function (agentResponse, productResponse) {
                         this.product = productResponse.data;
-                        this.agent = agentRepsonse.data;
+                        this.agent = agentResponse.data;
                         //this.product.agent_id = this.agent.id;
                     }.bind(this)))
                     

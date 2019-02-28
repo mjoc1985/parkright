@@ -2,7 +2,7 @@
 
     <div class="flex-1">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header sm:p-4">
                 <h1>Products</h1>
             </div>
             <div class="card-body p-0">
@@ -32,8 +32,8 @@
 
                             <td class="py-4">
                                 <router-link :to="{name: 'product-edit', params:{id:product.id}}"
-                                             class="btn btn-sm text-primary">
-                                    Manage
+                                             class="btn btn-sm text-primary"><i class="fas fa-edit sm:inline md:hidden"></i>
+                                    <span class="sm:hidden md:inline">Manage</span>
                                 </router-link>
                                 <!--<button @click.prevent class="btn btn-sm text-primary">Manage</button>-->
                                 <!--<button class="btn btn-sm text-primary-dark">Waiver</button>button-->

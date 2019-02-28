@@ -5,7 +5,7 @@
             <div class="card-header">
                 <h1>Agents</h1>
             </div>
-            <div class="card-body p-0">
+            <div class="card-body md:p-0">
                 <div>
                     <table class="table w-full">
                         <thead class="text-grey-darkest text-base bg-grey-lightest">
@@ -13,7 +13,7 @@
                             <th class="pl-10">#</th>
                             <th class="px-2 pl-10 text-left">Agent</th>
                             <th class="px-2 text-left">Slug</th>
-                            <th class="px-2 text-left">Email</th>
+                            <th class="px-2 text-left sm:hidden md:block">Email</th>
                             <th class="pr-10">&nbsp</th>
                         </tr>
                         </thead>
@@ -30,7 +30,7 @@
                                 <span class="block">{{agent.slug}}</span>
 
                             </td>
-                            <td class="py-4 px-2">
+                            <td class="py-4 px-2 md:block sm:hidden">
                                 <span class="block">{{agent.email}}</span>
                             </td>
 

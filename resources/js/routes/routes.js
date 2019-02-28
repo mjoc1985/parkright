@@ -86,7 +86,7 @@ export default [
         }
     },
     {
-        path: '/agents/:id/products/:product.id/edit',
+        path: '/agents/:id/products/:product/edit',
         name: 'agents-products-edit',
         components: require('../views/agents/AgentProduct'),
         meta: {
