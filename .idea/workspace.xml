@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5be05d9f-a8e9-4a9b-ab64-07f8f0a0fc04" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/routes/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/agents/Agent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/agents/Agent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/agents/AgentProduct.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/agents/AgentProduct.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/agents/AgentProductsIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/agents/AgentProductsIndex.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/agents/CreateAgentProduct.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/agents/CreateAgentProduct.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/agents/EditAgentProduct.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/agents/EditAgentProduct.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/agents/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/agents/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/bookings/Booking.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/bookings/Booking.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/bookings/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/bookings/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/partials/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/partials/Nav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/products/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/products/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/products/Product.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/products/Product.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/reports/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/reports/Index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/views/reports/Schedule.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/reports/Schedule.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tailwind.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,29 +63,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/views/reports/Schedule.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="46" column="117" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/js/views/partials/Nav.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="63" column="69" selection-start-line="63" selection-start-column="69" selection-end-line="63" selection-end-column="69" />
+            <state relative-caret-position="242">
+              <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/views/agents/AgentProductsIndex.vue">
+        <entry file="file://$PROJECT_DIR$/resources/js/views/partials/Nav.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="7" column="122" selection-start-line="7" selection-start-column="122" selection-end-line="7" selection-end-column="122" />
+            <state relative-caret-position="307">
+              <caret line="59" column="29" lean-forward="true" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tailwind.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="185" column="12" selection-start-line="185" selection-start-column="12" selection-end-line="185" selection-end-column="12" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -193,7 +176,6 @@
         <option value="$PROJECT_DIR$/resources/views/reports/pdf-waiver.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BookingController.php" />
         <option value="$PROJECT_DIR$/app/Imports/LCSBookingImport.php" />
-        <option value="$PROJECT_DIR$/tailwind.js" />
         <option value="$PROJECT_DIR$/resources/js/views/agents/Index.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/App.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/agents/Agent.vue" />
@@ -210,8 +192,9 @@
         <option value="$PROJECT_DIR$/resources/js/views/products/Index.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/products/Product.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/reports/Index.vue" />
-        <option value="$PROJECT_DIR$/resources/js/views/reports/Schedule.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/partials/Nav.vue" />
+        <option value="$PROJECT_DIR$/tailwind.js" />
+        <option value="$PROJECT_DIR$/resources/js/views/reports/Schedule.vue" />
       </list>
     </option>
   </component>
@@ -593,18 +576,17 @@
       <workItem from="1550954843679" duration="42639000" />
       <workItem from="1551181501437" duration="30994000" />
       <workItem from="1551358788762" duration="49000" />
-      <workItem from="1551359006864" duration="6546000" />
+      <workItem from="1551359006864" duration="6773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181534000" />
+    <option name="totallyTimeSpent" value="181761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2741148" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2741148" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -619,7 +601,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.376556" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.376556" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -844,16 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tailwind.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="185" column="12" selection-start-line="185" selection-start-column="12" selection-end-line="185" selection-end-column="12" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.mix.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
@@ -1010,17 +982,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/views/reports/Schedule.vue">
+    <entry file="file://$PROJECT_DIR$/resources/js/views/partials/Nav.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="46" column="117" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
+        <state relative-caret-position="307">
+          <caret line="59" column="29" lean-forward="true" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/views/partials/Nav.vue">
+    <entry file="file://$PROJECT_DIR$/tailwind.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="63" column="69" selection-start-line="63" selection-start-column="69" selection-end-line="63" selection-end-column="69" />
+        <state relative-caret-position="109">
+          <caret line="185" column="12" selection-start-line="185" selection-start-column="12" selection-end-line="185" selection-end-column="12" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/views/reports/Schedule.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="30" column="70" selection-start-line="30" selection-start-column="70" selection-end-line="30" selection-end-column="70" />
         </state>
       </provider>
     </entry>
