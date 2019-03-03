@@ -19,6 +19,7 @@
                             <th class="px-2">Depart<span class="sm:hidden md:inline">ing</span></th>
                             <th class="px-2">Veh<span class="sm:hidden md:inline">icle</span></th>
                             <th class="px-2 sm:hidden md:block">Agent/Product</th>
+                            <th class="px-2 text-center">Passengers</th>
                             <th class="pr-10">&nbsp</th>
                         </tr>
                         </thead>
@@ -54,12 +55,15 @@
                                 {{booking.agent.name}}
                                 <span class="block text-xs text-center text-primary">{{booking.product.name}}</span>
                             </td>
+                            <td class="md:py-4 md:table-cell sm:hidden px-2 font-semibold text-primary-black text-center">
+                                {{booking.booking_data.passengers}}
+                            </td>
 
 
                             <td class="md:py-4">
                                 <router-link :to="{name: 'booking-edit', params:{id:booking.id}}"
-                                             class="btn btn-sm text-primary"><i class="fas fa-edit sm:inline md:hidden"></i>
-                                    <span class="sm:hidden md:inline">Manage</span></router-link>
+                                             class="btn btn-sm text-primary"><i class="fas fa-edit"></i>
+                                  </router-link>
                                 <!--<button @click.prevent class="btn btn-sm text-primary">Manage</button>-->
                                 <!--<button class="btn btn-sm text-primary-dark">Waiver</button>button-->
 

@@ -55,7 +55,7 @@ class Schedule extends Model
             'vehicle'      => $booking['booking_data']['vehicle'],
             'flight'       => $booking['booking_data']['flight_out'],
             'mobile'       => $booking['booking_data']['mobile'],
-//            'passengers'   => $booking['booking_data']['passengers'],
+            'passengers'   => $booking['booking_data']['passengers'],
             'sort'         => $this->createTimeStamp($booking['booking_data']['arrival_date'] .' '.$booking['booking_data']['arrival_time'])
         ];
     }
@@ -73,7 +73,7 @@ class Schedule extends Model
             'flight'       => $booking['booking_data']['flight_in'],
             'mobile'       => $booking['booking_data']['mobile'],
             'return'       => null,
-//            'passengers'   => $booking['booking_data']['passengers'],       
+            'passengers'   => $booking['booking_data']['passengers'],       
             'sort'         => $this->createTimeStamp($booking['booking_data']['return_date'].' '. $booking['booking_data']['return_time'])
         ];
     }

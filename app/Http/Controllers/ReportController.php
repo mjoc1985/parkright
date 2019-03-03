@@ -18,8 +18,10 @@ class ReportController extends Controller
 {
     public function schedulePreview(Request $request)
     {
-        $bookings = $this->fetchBookings($request['date'], $request['type']);
-        return view('reports.schedule', compact('bookings'));
+        $date = $request['date'];
+        $bookings = $this->fetchBookings($date, $request['type']);
+        
+        return view('reports.schedule', compact('bookings', 'date'));
 
     }
 
@@ -34,7 +36,6 @@ class ReportController extends Controller
         } if ($type == 'both' || $type == 'out') {
             $collection->put('outgoing', $outgoing);
         }
-
         
 
         return (new Schedule(Carbon::createFromFormat('d-m-Y', $date)))->build($collection->toArray());
@@ -42,7 +43,7 @@ class ReportController extends Controller
 
     public function scheduleExport(Request $request)
     {
-        return $export = (new ScheduleExport($this->fetchBookings($request['date'], $request['type'])))->download($request['date'] . '.xls');
+        return $export = (new ScheduleExport($this->fetchBookings($request['date'], $request['type']), $request['date']))->download($request['date'] . '.xls');
 
     }
 

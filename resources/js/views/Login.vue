@@ -1,6 +1,6 @@
 <template>
 
-        <div class="md:container mx-auto p-8">
+        <div class="md:container sm:w-full mx-auto p-8">
             <div class="py-10 text-center">
                 <img style="max-width: 20rem" src="/storage/logo.png" alt="">
             </div>
