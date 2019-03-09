@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Waiver extends Report
 {
-    protected $date;
-    protected $bookings;
+    public $date;
+    public $bookings;
     
     public function __construct(Carbon $date)
     {
         $this->date = $date->format('d-m-Y');
         $this->bookings = new Collection();
-        parent::__construct();
+        //parent::__construct();
     }
     
     public function build($bookingCollection)
