@@ -15,6 +15,6 @@ class Agents extends Model
     
     public function agentProducts()
     {
-        return $this->hasMany(AgentProduct::class);
+        return $this->hasMany(AgentProduct::class, 'agent_id');
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.viewData.date != null" class="flex-1">
+    <div v-if="this.viewData.view != null" class="flex-1">
         <div class="card text-sm">
             <div class="card-header flex">
                 <h1>Preview for {{this.viewData.date}}</h1>
@@ -22,6 +22,7 @@
     </div>
 </template>
 <script>
+
     export default {
         props:['viewData'],
         data(){

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +35,13 @@ Route::group(['prefix' => 'bookings'], function (){
 });
 
 Route::group(['prefix' => 'reports'], function (){
+    // Schedule Reports
    Route::get('/schedule/preview', 'ReportController@schedulePreview'); 
    Route::get('/schedule/export', 'ReportController@scheduleExport');
    Route::get('/schedule/waivers', 'ReportController@waivers');
+   // Bookings Reports
+   Route::get('/bookings/export', 'ReportController@bookingsExport');
+   Route::get('/bookings/preview', 'ReportController@bookingsPreview');
 });
 
 Route::group(['prefix' => 'webhooks'], function (){
@@ -59,4 +64,29 @@ Route::group(['prefix' => 'products'], function() {
    Route::get('/', 'ProductController@all');
    Route::get('{id}/edit', 'ProductController@edit');
    Route::post('{id}/update', 'ProductController@update');
+});
+
+Route::group(['prefix' => 'dashboard'], function (){
+   Route::get('revenue', 'DashboardController@revenue');
+   Route::get('commission', 'DashboardController@commission');
+   Route::get('booking/overview', 'DashboardController@overview');
+});
+
+Route::get('/fix-dates', function (){
+   $bookings = \App\Booking::all();
+   foreach ($bookings as $booking){
+       $data = $booking->booking_data;
+       $arr = (new \Carbon\Carbon($data['arrival_date']))->format('Y-m-d H:i:s');
+       $ret = (new \Carbon\Carbon($data['return_date']))->format('Y-m-d H:i:s');
+       unset($data['arrival_date']);
+       unset($data['return_date']);
+        Arr::set($data, 'arrival_date', $arr);
+        Arr::set($data, 'return_date', $ret);
+
+       //dd($arr);
+       //dd($data);
+       //dd($booking->booking_data['arrival_date']);
+      
+       $booking->update(['booking_data' => $data]);
+   }
 });

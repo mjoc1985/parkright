@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Reports;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class Waiver extends Model
+class Waiver extends Report
 {
     protected $date;
     protected $bookings;

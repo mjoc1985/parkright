@@ -16,6 +16,6 @@ class AgentProduct extends Model
     
     public function product()
     {
-        return $this->hasOne(Product::class, 'id', 'product_id');
+        return $this->hasOne(Product::class, 'id','product_id');
     }
 }

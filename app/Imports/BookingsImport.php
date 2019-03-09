@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Agents;
 use App\Booking;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -44,7 +45,7 @@ class BookingsImport implements ToModel, WithHeadingRow
             'price_paid' => $row['price_paid'],
             'supplier_cost' => $row['supplier_cost'],
             'product_id' => $row['product_id']
-            //'passengers' => $row['passengers']
+           
         ];
         if (key_exists('passengers', $row)){
             $bookingData['passengers'] = $row['passengers'];

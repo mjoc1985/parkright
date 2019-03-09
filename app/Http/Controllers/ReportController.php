@@ -3,50 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Exports\BookingExport;
 use App\Exports\ScheduleExport;
-use App\Report;
-use App\Schedule;
-use App\Waiver;
+use App\Reports\BookingExporter;
+use App\Reports\Schedule;
+use App\Reports\Waiver;
+use App\Search\BookingSearch;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use http\Env\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\View;
 
 
 class ReportController extends Controller
 {
+    /**
+     * Preview Schedule
+     * 
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     */
     public function schedulePreview(Request $request)
     {
-        $date = $request['date'];
-        $bookings = $this->fetchBookings($date, $request['type']);
+        $schedule = (new Schedule($request));
         
-        return view('reports.schedule', compact('bookings', 'date'));
-
+        return view('reports.schedule', compact('schedule'));
     }
 
-    public function fetchBookings($date, $type = null)
-    {
-        $collection = collect();
-        $incoming = Booking::where('booking_data->arrival_date', '=', $date)->get();
-        $outgoing = Booking::where('booking_data->return_date', $date)->get();
-
-        if ($type == 'both' || $type == 'in') {
-           $collection->put('incoming', $incoming);
-        } if ($type == 'both' || $type == 'out') {
-            $collection->put('outgoing', $outgoing);
-        }
-        
-
-        return (new Schedule(Carbon::createFromFormat('d-m-Y', $date)))->build($collection->toArray());
-    }
-
+    /**
+     * Export Schedule to Excel file
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @throws \Exception
+     */
     public function scheduleExport(Request $request)
     {
-        return $export = (new ScheduleExport($this->fetchBookings($request['date'], $request['type']), $request['date']))->download($request['date'] . '.xls');
+        return (new Schedule($request))->download();
 
     }
 
+    /**
+     * Generate Waivers to PDF file for download.
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function waivers(Request $request)
     {
         set_time_limit(0);
@@ -60,80 +63,31 @@ class ReportController extends Controller
 
     }
 
-
     /**
-     * Display a listing of the resource.
+     * Booking Export
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @throws \Exception
      */
-    public function index()
+    public function bookingsExport(Request $request)
     {
-        //
+        return $export = (new BookingExporter($request))->download();
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Booking Preview
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
-    public function create()
+    public function bookingsPreview(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Report $report)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Report $report)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Report $report)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Report $report)
-    {
-        //
+        $export = (new BookingExporter($request));
+        return view('reports.booking-export', ['bookings' => $export->bookings]);
     }
 }
+
+
+   

@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Reports\Schedule;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -17,14 +18,11 @@ use Maatwebsite\Excel\Writer;
 class ScheduleExport implements FromView, ShouldAutoSize, WithEvents
 {
     use Exportable;
-    protected $bookings;
-    protected $date;
+    public $schedule;
     
-    public function __construct($bookings, $date)
+    public function __construct(Schedule $schedule)
     {
-        $this->bookings = $bookings;
-        $this->date = $date;
-       
+        $this->schedule = $schedule;
     }
 
     /**
@@ -32,7 +30,7 @@ class ScheduleExport implements FromView, ShouldAutoSize, WithEvents
      */
     public function view(): View
     {
-        return view('reports.schedule', ['bookings' => $this->bookings, 'date' => $this->date]);
+        return view('reports.schedule', ['schedule' => $this->schedule]);
     }
 
 
@@ -43,18 +41,11 @@ class ScheduleExport implements FromView, ShouldAutoSize, WithEvents
                 $event->writer->setCreator('Park Right');
                 
             },
-            
-            BeforeSheet::class => function(BeforeSheet $event) {
-            $event->sheet->appendRows(array(
-                array('Poo')
-            ), $event);
-            
-            },
             AfterSheet::class    => function(AfterSheet $event) {
                 $event->sheet->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
                 
                 $event->sheet->styleCells(
-                    'A1:K1',
+                    'A3:K3',
                     [
                         'font' => [
                             'bold' => true
@@ -65,6 +56,15 @@ class ScheduleExport implements FromView, ShouldAutoSize, WithEvents
                                 //'color' => ['argb' => 'FFFF0000'],
                             ],
                         ]
+                    ]
+                );
+                $event->sheet->styleCells(
+                    'A1:A1',
+                    [
+                        'font' => [
+                            'bold' => true
+                        ],
+
                     ]
                 );
             },

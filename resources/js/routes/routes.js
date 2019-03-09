@@ -62,6 +62,17 @@ export default [
         }
     },
     {
+        path: '/reports/bookings/export',
+        name: 'bookings-export',
+        components: require('../views/reports/BookingExporter'),
+        meta: {
+            auth: true
+        }
+    },
+    
+    
+    
+    {
         path: '/agents',
         name: 'agents-index',
         components: require('../views/agents/Index'),

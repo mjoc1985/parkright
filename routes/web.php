@@ -17,13 +17,16 @@ use App\Schedule;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
-Route::get('test', function (){
-    dd(strtotime('43527'));
-    $date = Carbon::createFromFormat('d/m/Y H:i:s', strtotime('43527'));
-    dd($date);
-   return view('reports.pdf-waiver', compact('bookings'));
+Route::get('fix-booking-relations', function (){
+   $bookings = Booking::all();
+   $bookings->each(function ($booking) {
+       $agentProduct = \App\AgentProduct::where('agent_code', $booking->booking_data->product_id)->first();
+       //dd($agentProduct);
+       $product = \App\Product::find($agentProduct['product_id']);
+       $booking->product_id = $product->id;
+       $booking->agents_products_id = $agentProduct->id;
+       $booking->save();
 
-print_r($bookings);
-    //return $collection;
+   });
 });
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');

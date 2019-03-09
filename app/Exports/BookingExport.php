@@ -1,47 +1,66 @@
 <?php
 
-namespace App;
+namespace App\Exports;
 
+use App\Booking;
+use App\Reports\BookingExporter;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Events\BeforeExport;
 
-class Schedule extends Model
+class BookingExport implements FromView, ShouldAutoSize, WithEvents
 {
+    use Exportable;
     protected $bookings;
-    protected $date;
-
-    public function __construct(Carbon $date)
+    
+    public function __construct(BookingExporter $bookings)
     {
-        $this->date = $date->format('d-m-Y');
-        $this->bookings = new Collection();
-        parent::__construct();
+        $this->bookings = $bookings;
     }
 
-    public function build($bookingCollection)
+    /**
+     * @return View
+     */
+    public function view(): View
     {
-       
-        if (key_exists('incoming', $bookingCollection)) {
-            foreach ($bookingCollection['incoming'] as $booking) {
 
-
-                $this->bookings->push($this->setArrivalsData($booking));
-            }
-        }
-        if (key_exists('outgoing', $bookingCollection)) {
-            foreach ($bookingCollection['outgoing'] as $booking) {
-                $this->bookings->push($this->setReturnsData($booking));
-            }
-        }
-        
-        //return $this->bookings;
-
-        $sorted = $this->bookings->sortBy(function ($obj, $key) {
-            return strtotime($obj['sort']);
-        });
-        return $sorted;
+        return view('reports.booking-export')->with(['bookings' => $this->bookings->bookings->sortBy('sort'), 'date' => $this->bookings->dateFrom]);
     }
 
+    public function registerEvents(): array
+    {
+        return [
+            BeforeExport::class => function (BeforeExport $event) {
+                $event->writer->setCreator('Park Right');
+
+            },
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+
+                $event->sheet->styleCells(
+                    'A1:N1',
+                    [
+                        'font' => [
+                            'bold' => true
+                        ],
+                        'borders' => [
+                            'outline' => [
+                                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                                //'color' => ['argb' => 'FFFF0000'],
+                            ],
+                        ]
+                    ]
+                );
+            },
+        ];
+    }
     public function setArrivalsData($booking)
     {
         return [
@@ -73,26 +92,9 @@ class Schedule extends Model
             'flight'       => $booking['booking_data']['flight_in'],
             'mobile'       => $booking['booking_data']['mobile'],
             'return'       => null,
-            'passengers'   => $booking['booking_data']['passengers'],       
+            'passengers'   => $booking['booking_data']['passengers'],
             'sort'         => $this->createTimeStamp($booking['booking_data']['return_date'].' '. $booking['booking_data']['return_time'])
         ];
     }
-
-    public function getName($booking)
-    {
-        return $booking['booking_data']['title'] . ' ' . $booking['booking_data']['first_name'] . ' ' . $booking['booking_data']['last_name'];
-    }
     
-    public function getLengthOfStay($booking)
-    {
-        $arrival = Carbon::createFromFormat('d-m-Y', $booking['booking_data']['arrival_date']);
-        $return = Carbon::createFromFormat('d-m-Y', $booking['booking_data']['return_date']);
-        return $arrival->diffInDays($return);
-    }
-    
-    public function createTimeStamp($date)
-    {
-        $date = Carbon::createFromFormat('d-m-Y H:i', $date)->format('Y-m-d H:i:s');
-        return $date;
-    }
 }
