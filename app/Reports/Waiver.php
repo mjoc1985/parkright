@@ -31,34 +31,34 @@ class Waiver extends Report
     public function setData($booking)
     {
         return [
-            'ref'            => $booking['ref'],
+            'ref'            => $booking->ref,
             'name'           => $this->getName($booking),
-            'terminal'       => $booking['booking_data']['terminal_out'],
+            'terminal'       => $booking->booking_data->terminal_out,
             'stay'           => $this->getLengthOfStay($booking),
-            'arrival_date'   => $booking['booking_data']['arrival_date'],
-            'time'           => Carbon::createFromFormat('H:i', $booking['booking_data']['arrival_time'])->format('H:i'),
-            'return_date'    => $booking['booking_data']['return_date'],
-            'return_time'    => $booking['booking_data']['return_date'] .' '. $booking['booking_data']['return_time'],
-            'vehicle_reg'    => $booking['booking_data']['vehicle_reg'],
-            'vehicle'        => $booking['booking_data']['vehicle'],
-            'vehicle_colour' => $booking['booking_data']['vehicle_colour'],
-            'flight'         => $booking['booking_data']['flight_in'],
-            'mobile'         => $booking['booking_data']['mobile'],
-//            'passengers'   => $booking['booking_data']['passengers'],
-            'sort'           => $this->createTimeStamp($booking['booking_data']['arrival_date'] .' '.$booking['booking_data']['arrival_time'])
+            'arrival_date'   => $booking->booking_data->arrival_date,
+            'time'           => Carbon::createFromFormat('H:i', $booking->booking_data->arrival_time)->format('H:i'),
+            'return_date'    => $booking->booking_data->return_date,
+            'return_time'    => $booking->booking_data->return_date .' '. $booking->booking_data->return_time,
+            'vehicle_reg'    => $booking->booking_data->vehicle_reg,
+            'vehicle'        => $booking->booking_data->vehicle,
+            'vehicle_colour' => $booking->booking_data->vehicle_colour,
+            'flight'         => $booking->booking_data->flight_in,
+            'mobile'         => $booking->booking_data->mobile,
+            'passengers'     => $booking->booking_data->passengers,
+            'sort'           => $this->createTimeStamp($booking->booking_data->arrival_date .' '.$booking->booking_data->arrival_time)
         ];
         
     }
 
     public function getName($booking)
     {
-        return $booking['booking_data']['title'] . ' ' . $booking['booking_data']['first_name'] . ' ' . $booking['booking_data']['last_name'];
+        return $booking->booking_data->title . ' ' . $booking->booking_data->first_name . ' ' . $booking->booking_data->last_name;
     }
 
     public function getLengthOfStay($booking)
     {
-        $arrival = Carbon::createFromFormat('d-m-Y', $booking['booking_data']['arrival_date']);
-        $return = Carbon::createFromFormat('d-m-Y', $booking['booking_data']['return_date']);
+        $arrival = Carbon::createFromFormat('d-m-Y', $booking->booking_data->arrival_date);
+        $return = Carbon::createFromFormat('d-m-Y', $booking->booking_data->return_date);
         return $arrival->diffInDays($return);
     }
 
