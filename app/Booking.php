@@ -75,4 +75,6 @@ class Booking extends Model
         return $data;
 
     }
+    
+   
 }

@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\AgentProduct;
 use App\Agents;
 use App\Booking;
 use Carbon\Carbon;
@@ -57,6 +58,8 @@ class BookingsImport implements ToModel, WithHeadingRow
         } else {
             $booking = new Booking([
                 'agent_id' => $this->agent['id'],
+                'agents_products_id' => $row['product_id'],
+                'product_id' => $this->getProduct($this->agent['id'], $row['product_id']),
                 'ref' => $row['booking_ref'],
                 'status' => $row['status'],
                 'created_at' => $row['created_at']
@@ -65,5 +68,14 @@ class BookingsImport implements ToModel, WithHeadingRow
         }
         $booking->save();
         return $booking;
+    }
+    
+    public function getProduct($agentId, $productId)
+    {
+        $agentProduct = AgentProduct::where('agent_id', $agentId)->where('agent_code', $productId)->first();
+        
+        return $agentProduct->product->id;
+        
+        
     }
 }
