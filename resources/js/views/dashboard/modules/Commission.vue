@@ -1,7 +1,7 @@
 <template>
     <div class="card w-full">
         <div class="card-header sm:p-4">
-            <h1>Commission</h1>
+            <h1>Earnings</h1>
             <i class="fas fa-pound-sign text-2xl text-grey-dark"></i>
 
         </div>
