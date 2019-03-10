@@ -39,6 +39,7 @@ Route::group(['prefix' => 'reports'], function (){
    Route::get('/schedule/preview', 'ReportController@schedulePreview'); 
    Route::get('/schedule/export', 'ReportController@scheduleExport');
    Route::get('/schedule/waivers', 'ReportController@waivers');
+   Route::get('/schedule/filterData', 'ReportController@filterData');
    // Bookings Reports
    Route::get('/bookings/export', 'ReportController@bookingsExport');
    Route::get('/bookings/preview', 'ReportController@bookingsPreview');

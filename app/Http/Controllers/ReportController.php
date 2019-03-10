@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Agents;
 use App\Booking;
 use App\Exports\BookingExport;
 use App\Exports\ScheduleExport;
+use App\Product;
 use App\Reports\BookingExporter;
 use App\Reports\Schedule;
 use App\Reports\Waiver;
@@ -86,6 +88,17 @@ class ReportController extends Controller
     {
         $export = (new BookingExporter($request));
         return view('reports.booking-export', ['bookings' => $export->bookings]);
+    }
+    
+    public function filterData()
+    {
+        return [
+            'agents' => Agents::all()->toArray(),
+            'products' => Product::all()->toArray(),
+            'serviceType' => [
+                'Park and Ride', 'Undercover M&G', 'Return M&G'
+            ]
+        ];
     }
 }
 

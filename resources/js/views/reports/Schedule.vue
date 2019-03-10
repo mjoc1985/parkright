@@ -13,6 +13,48 @@
                                 <h3 class="text-primary-black">Generate List</h3>
                             </div>
                             <div class="w-2/3 p-4 text-primary-black float-left">
+                                <template v-if="filterOptions">
+                                    <div class="w-full">
+                                        <div class="font-semibold clearfix">
+                                            <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
+                                                <label>Agent</label>
+                                                <div class="relative">
+                                                <select v-model="filter.agent" class="form-input">
+                                                    <option value="">All</option>
+                                                    <option v-for="agent in filterOptions.agents" :value="agent.slug">{{ agent.name }}</option>
+                                                </select>
+                                                    <div class="form-select-caret"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="font-semibold clearfix">
+                                            <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
+                                                <label>Product</label>
+                                                <div class="relative">
+                                                    <select v-model="filter.product" class="form-input">
+                                                        <option value="">All</option>
+                                                        <option v-for="product in filterOptions.products" :value="product.id">{{ product.name }}</option>
+                                                    </select>
+                                                    <div class="form-select-caret"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="font-semibold clearfix">
+                                            <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
+                                                <label>Service Type</label>
+                                                <div class="relative">
+                                                    <select v-model="filter.service" class="form-input">
+                                                        <option value="">All</option>
+                                                        <option v-for="service in filterOptions.serviceType" :value="service">{{ service }}</option>
+                                                    </select>
+                                                    <div class="form-select-caret"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
                                 <div class="w-full">
                                     <div class="font-semibold clearfix">
                                         <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
@@ -77,15 +119,40 @@
                 previewData: {
                     date: null,
                     view: null
+                },
+                filterOptions: {},
+                filter:{
+                    agent: '',
+                    product: '',
+                    service: ''
                 }
             }
         },
         created() {
+            this.fetch();
 
         },
         methods: {
+            buildQuery(){
+                let query = new FormData();
+                
+                query.append('date', this.date);
+                query.append('type', this.type);
+                
+                if (this.filter.agent){
+                    query.append('agent', this.filter.agent);
+                } 
+                if (this.filter.product){
+                    query.append('product', this.filter.product);
+                } 
+                if (this.filter.service) {
+                    query.append('service', this.filter.service);
+                }
+                return new URLSearchParams(query).toString();
+            },
             download() {
-                axios.get('/reports/schedule/export' + '?date=' + this.date + '&type=' + this.type, {responseType: 'arraybuffer'})
+                
+                axios.get('/reports/schedule/export?' + this.buildQuery(), {responseType: 'arraybuffer'})
                     .then(response => {
                         console.log(response);
                         const blob = new Blob([response.data], {type: 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
@@ -99,7 +166,7 @@
                     })
             },
             preview() {
-                axios.get('/reports/schedule/preview' + '?date=' + this.date + '&type=' + this.type)
+                axios.get('/reports/schedule/preview?' + this.buildQuery())
                     .then(response => {
                         this.previewData.date = this.date;
                         this.previewData.view = response.data
@@ -116,6 +183,12 @@
                         link.href = window.URL.createObjectURL(blob);
                         link.download = this.date + '_waivers.pdf';
                         link.click();
+                    })
+            },
+            fetch(){
+                axios.get('/reports/schedule/filterData')
+                    .then(response => {
+                        this.filterOptions = response.data;
                     })
             }
         }
