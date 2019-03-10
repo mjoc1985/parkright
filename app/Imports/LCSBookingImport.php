@@ -66,6 +66,9 @@ class LCSBookingImport implements ToModel, WithHeadingRow
                 if (key_exists('status', $row)) {
                     $booking->status = $row['status'];
                 }
+                $booking->agent_id = $this->agent['id'];
+                $booking->agents_products_id = $row['product'];
+                $booking->product_id = $this->getProduct($this->agent['id'], $row['product']);
                 $booking->booking_data = $bookingData;
 
             } else {

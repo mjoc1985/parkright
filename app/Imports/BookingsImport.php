@@ -53,6 +53,9 @@ class BookingsImport implements ToModel, WithHeadingRow
         }
         if ($booking = Booking::where('ref', $row['booking_ref'])->first()) {
             $booking->status = $row['status'];
+            $booking->agent_id = $this->agent['id'];
+            $booking->agents_products_id = $row['product_id'];
+            $booking->product_id = $this->getProduct($this->agent['id'], $row['product_id']);
             $booking->booking_data = $bookingData;
 
         } else {
