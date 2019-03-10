@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Carbon\Carbon;
-use DemeterChain\B;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -23,10 +20,10 @@ class DashboardController extends Controller
     public function commission()
     {
         return response([
-            'total' => $this->totalRevenue() / 100 * 75,
-            'week' => $this->totalWeek() / 100 * 75,
-            'month' => $this->totalMonth() / 100 * 75,
-            'year' => $this->totalYear() / 100 * 75
+            'total' => $this->totalRevenue() / 100 * 70,
+            'week' => $this->totalWeek() / 100 * 70,
+            'month' => $this->totalMonth() / 100 * 70,
+            'year' => $this->totalYear() / 100 * 70
         ]);
     }
 
@@ -67,6 +64,7 @@ class DashboardController extends Controller
         $bookings->each(function ($booking) use ($total) {
             $total->push($booking->booking_data->price_paid);
         });
+        //return 2;
 
         return (float)$total->sum();
     }
