@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" v-if="overview">
         <div class="card-header sm:p-4">
             <h1>Booking Overview</h1>
             <i class="fas fa-calendar-alt text-2xl text-grey-dark"></i>
