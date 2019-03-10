@@ -68,7 +68,7 @@ class DashboardController extends Controller
             $total->push($booking->booking_data->price_paid);
         });
 
-        return $total->sum();
+        return (float)$total->sum();
     }
 
     public function totalMonth()
@@ -83,7 +83,7 @@ class DashboardController extends Controller
             $total->push($booking->booking_data->price_paid);
         });
 
-        return $total->sum();
+        return (float)$total->sum();
     }
 
     public function totalYear()
@@ -98,7 +98,7 @@ class DashboardController extends Controller
             $total->push($booking->booking_data->price_paid);
         });
 
-        return $total->sum();
+        return (float)$total->sum();
     }
 
     public function getCurrentBookingCount()
