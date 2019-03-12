@@ -26,10 +26,10 @@ class BookingSearch
                 (new Carbon($filters->input('date')))->startOfDay()->toDateTimeString(),
                 (new Carbon($filters->input('date')))->endOfDay()->toDateTimeString()
             ]);
-            $returns->whereBetween('booking_data->return_date', [
-                (new Carbon($filters->input('date')))->startOfDay()->toDateTimeString(),
-                (new Carbon($filters->input('date')))->endOfDay()->toDateTimeString()
-            ]);        }
+//            $returns->whereBetween('booking_data->return_date', [
+//                (new Carbon($filters->input('date')))->startOfDay()->toDateTimeString(),
+//                (new Carbon($filters->input('date')))->endOfDay()->toDateTimeString()
+//            ]);        }
 //        // From date for booking range search.
         if ($filters->has('dateFrom') && !$filters->has('dateTo')) {
             $arrivals->whereBetween('booking_data->arrival_date', [
