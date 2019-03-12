@@ -77,10 +77,10 @@ class Booking extends Model
 //        $data->arrival_date = (new Carbon($data->arrival_date));
 //        $data->return_date = (new Carbon($data->return_date));
 
-//        $price = explode('£', $data->price_paid);
-//        //if ($price[0] == '£') {
-//           
-//            $data->price_paid = $price[1];
+        $price = explode('£', $data->price_paid);
+//        if ($price[0] == '£') {
+           
+            $data->price_paid = $price[1];
         //}
        //dd($data);
         return $data;
