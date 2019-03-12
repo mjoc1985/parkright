@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5be05d9f-a8e9-4a9b-ab64-07f8f0a0fc04" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
-    </list>
+    <list default="true" id="5be05d9f-a8e9-4a9b-ab64-07f8f0a0fc04" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +53,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReportController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="298">
@@ -63,6 +61,15 @@
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/js/views/reports/Schedule.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="175" column="88" selection-start-line="175" selection-start-column="88" selection-end-line="175" selection-end-column="88" />
             </state>
           </provider>
         </entry>
@@ -184,7 +191,6 @@
         <option value="$PROJECT_DIR$/resources/js/views/dashboard/modules/Revenue.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/dashboard/modules/Commission.vue" />
         <option value="$PROJECT_DIR$/resources/js/views/dashboard/modules/BookingOverview.vue" />
-        <option value="$PROJECT_DIR$/resources/js/views/reports/Schedule.vue" />
         <option value="$PROJECT_DIR$/app/Reports/BookingExporter.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Booking.php" />
@@ -199,6 +205,7 @@
         <option value="$PROJECT_DIR$/app/Reports/Report.php" />
         <option value="$PROJECT_DIR$/app/Search/BookingSearch.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" />
+        <option value="$PROJECT_DIR$/resources/js/views/reports/Schedule.vue" />
       </list>
     </option>
   </component>
@@ -544,16 +551,15 @@
       <workItem from="1550954843679" duration="42639000" />
       <workItem from="1551181501437" duration="30994000" />
       <workItem from="1551358788762" duration="49000" />
-      <workItem from="1551359006864" duration="118588000" />
+      <workItem from="1551359006864" duration="118837000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="293576000" />
+    <option name="totallyTimeSpent" value="293825000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18803419" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -872,16 +878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/views/reports/Schedule.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1198">
-          <caret line="192" column="13" selection-start-line="187" selection-start-column="12" selection-end-line="192" selection-end-column="13" />
-          <folding>
-            <element signature="e#3190#3231#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.mix.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
@@ -1011,6 +1007,13 @@
           <folding>
             <element signature="e#40#55#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/views/reports/Schedule.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="175" column="88" selection-start-line="175" selection-start-column="88" selection-end-line="175" selection-end-column="88" />
         </state>
       </provider>
     </entry>
