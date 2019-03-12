@@ -77,12 +77,14 @@ Route::get('/fix-dates', function (){
    $bookings = \App\Booking::all();
    foreach ($bookings as $booking){
        $data = $booking->booking_data;
-       $arr = (new \Carbon\Carbon($data['arrival_date']))->format('Y-m-d H:i:s');
-       $ret = (new \Carbon\Carbon($data['return_date']))->format('Y-m-d H:i:s');
-       unset($data['arrival_date']);
-       unset($data['return_date']);
-        Arr::set($data, 'arrival_date', $arr);
-        Arr::set($data, 'return_date', $ret);
+       //dd($data);
+       $arr = (new \Carbon\Carbon($data->arrival_date . ' ' . $data->arrival_time))->format('Y-m-d H:i:s');
+       $ret = (new \Carbon\Carbon($data->return_date . ' ' . $data->return_time))->format('Y-m-d H:i:s');
+//       unset($data->arrival_date);
+//       unset($data->return_date);
+       $data->arrival_date = $arr;
+       $data->return_date = $ret;
+        
 
        //dd($arr);
        //dd($data);

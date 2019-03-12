@@ -12,7 +12,12 @@ class Report
     public $type;
     public $bookings;
     public $serviceType;
-    
+
+    /**
+     * Report constructor.
+     * @param Request $request
+     * @throws \Exception
+     */
     public function __construct(Request $request)
     {
         $this->type             = $request['type'] ?: 'both';
@@ -23,9 +28,10 @@ class Report
 
     /**
      * Arrival date for use with exports.
-     * 
+     *
      * @param $booking
      * @return array
+     * @throws \Exception
      */
     public function setArrivalsData($booking)
     {
@@ -34,9 +40,9 @@ class Report
             'name'         => $this->getName($booking),
             'terminal'     => $booking->booking_data->terminal_out,
             'stay'         => $this->getLengthOfStay($booking),
-            'arrival'      => $booking->booking_data->arrival_date,
+            'arrival'      => (new Carbon($booking->booking_data->arrival_date))->format('d-m-Y'),
             'time'         => Carbon::createFromFormat('H:i', $booking->booking_data->arrival_time)->format('H:i'),
-            'return'       => $booking->booking_data->return_date,
+            'return'       => (new Carbon($booking->booking_data->return_date))->format('d-m-Y'),
             'return_time'  => $booking->booking_data->return_time,
             'vehicle_reg'  => $booking->booking_data->vehicle_reg,
             'vehicle'      => $booking->booking_data->vehicle,
@@ -44,15 +50,16 @@ class Report
             'mobile'       => $booking->booking_data->mobile,
             'passengers'   => $booking->booking_data->passengers,
             'type'         => 'In',
-            'sort'         => $this->createTimeStamp($booking->booking_data->arrival_date .' '.$booking->booking_data->arrival_time)
+            'sort'         => $booking->booking_data->arrival_date
         ];
     }
 
     /**
      * Return date for use with exports.
-     * 
+     *
      * @param $booking
      * @return array
+     * @throws \Exception
      */
     public function setReturnsData($booking)
     {
@@ -62,17 +69,17 @@ class Report
             'name'         => $this->getName($booking),
             'terminal'     => $booking->booking_data->terminal_in,
             'stay'         => $this->getLengthOfStay($booking),
-            'arrival'      => $booking->booking_data->arrival_date,
+            'arrival'      => (new Carbon($booking->booking_data->arrival_date))->format('d-m-Y'),
             'time'         => Carbon::createFromFormat('H:i', $booking->booking_data->return_time)->format('H:i'),
             'vehicle_reg'  => $booking->booking_data->vehicle_reg,
             'vehicle'      => $booking->booking_data->vehicle,
             'flight'       => $booking->booking_data->flight_in,
             'mobile'       => $booking->booking_data->mobile,
-            'return'       => $booking->booking_data->return_date,
+            'return'       => (new Carbon($booking->booking_data->return_date))->format('d-m-Y'),
             'return_time'  => $booking->booking_data->return_time,
             'passengers'   => $booking->booking_data->passengers,
             'type'         => 'Out',
-            'sort'         => $this->createTimeStamp($booking->booking_data->return_date.' '. $booking->booking_data->return_time)
+            'sort'         => $booking->booking_data->return_date
         ];
     }
 
@@ -87,11 +94,12 @@ class Report
         return $booking->booking_data->title . ' ' . $booking->booking_data->first_name . ' ' . $booking->booking_data->last_name;
     }
 
-    /** 
+    /**
      * Search and process bookings ready for exporting.
-     * 
+     *
      * @param $request
      * @return \Illuminate\Support\Collection
+     * @throws \Exception
      */
     public function search($request)
     {
@@ -100,9 +108,10 @@ class Report
 
     /**
      * Search Bookings and returns incoming and outgoing collections.
-     * 
+     *
      * @param Request $request
      * @return \Illuminate\Support\Collection
+     * @throws \Exception
      */
     public function searchBookings(Request $request)
     {
@@ -140,7 +149,7 @@ class Report
      */
     public function getArrivals($date)
     {
-        return Booking::where('booking_data->arrival_date', $date->format('d-m-Y'))->get();
+        return Booking::where('booking_data->arrival_date', $date)->get();
     }
 
     /**

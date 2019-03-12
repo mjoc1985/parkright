@@ -26,6 +26,7 @@ class LCSBookingImport implements ToModel, WithHeadingRow
      * @param array $row
      *
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \Exception
      */
     public function model(array $row)
     {
@@ -87,12 +88,17 @@ class LCSBookingImport implements ToModel, WithHeadingRow
         
         
     }
-    
+
+    /**
+     * @param $date
+     * @return string
+     * @throws \Exception
+     */
     public function getDate($date)
     {
        // $newDate = preg_replace('~\x{00a0}~u', ' ', $date);
-      $newDate = Carbon::createFromFormat('d/m/Y', $date);
-        return $newDate->format('d-m-Y');
+      $newDate = (new Carbon($date))->toDateTimeString();
+        return $newDate;
     }
 
     public function registerEvents(): array

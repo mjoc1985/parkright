@@ -22,6 +22,7 @@ class BookingsImport implements ToModel, WithHeadingRow
      * @param array $row
      *
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \Exception
      */
     public function model(array $row)
     {
@@ -31,9 +32,9 @@ class BookingsImport implements ToModel, WithHeadingRow
             'last_name' => $row['last_name'],
             'phone' => $row['phone'],
             'mobile' => $row['mobile'],
-            'arrival_date' => $row['arrival_date'],
+            'arrival_date' => (new Carbon($row['arrival_date'] . ' ' . $row['arrival_time']))->toDateTimeString(),
             'arrival_time' => $row['arrival_time'],
-            'return_date' => $row['return_date'],
+            'return_date' => (new Carbon($row['return_date'] . ' ' . $row['return_time']))->toDateTimeString(),
             'return_time' => $row['return_time'],
             'terminal_out' => $row['terminal_out'],
             'terminal_in' => $row['terminal_in'],

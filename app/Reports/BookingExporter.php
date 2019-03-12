@@ -20,8 +20,8 @@ class BookingExporter extends Report
     public function __construct(Request $request)
     {
         parent::__construct($request);
-        $this->dateFrom = (new Carbon($request['dateFrom']))->startOfDay()->format('d-m-Y H:i:s');
-        $this->dateTo = (new Carbon($request['dateTo']))->endOfDay()->format('d-m-Y H:i:s');
+        $this->dateFrom = (new Carbon($request['dateFrom']))->format('d-m-Y');
+        $this->dateTo = (new Carbon($request['dateTo']))->format('d-m-Y');
     }
 
     /**

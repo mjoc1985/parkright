@@ -13,8 +13,8 @@ class Booking extends Model
     protected $casts = [
         'booking_data' => 'json',
         'booking_data->price_paid' => 'float',
-//        'booking_data->arrival_date' => 'date',
-//        'booking_data->return_date' => 'date'
+        'booking_data->arrival_date' => 'date',
+        'booking_data->return_date' => 'date'
 
     ];
 
@@ -64,14 +64,25 @@ class Booking extends Model
         ];
     }
 
+    /**
+     * @param $value
+     * @return mixed
+     * @throws \Exception
+     */
     public function getBookingDataAttribute($value)
     {
         $data = json_decode($value);
-//        $data->arrival_date = (new Carbon($data->arrival_date . ' '. $data->arrival_time))->format('d-m-Y H:i:s');
-//        $data->return_date  = (new Carbon($data->return_date . ' '. $data->return_time))->format('d-m-Y H:i:s');
+        $data->arrival_date = (new Carbon($data->arrival_date))->format('d-m-Y');
+        $data->return_date  = (new Carbon($data->return_date))->format('d-m-Y');
+//        $data->arrival_date = (new Carbon($data->arrival_date));
+//        $data->return_date = (new Carbon($data->return_date));
+
         $price = explode('£', $data->price_paid);
-        $data->price_paid = $price[1];
-       
+        //if ($price[0] == '£') {
+           
+            $data->price_paid = $price[1];
+        //}
+       //dd($data);
         return $data;
 
     }

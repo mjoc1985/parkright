@@ -10,20 +10,20 @@ class DashboardController extends Controller
     public function revenue()
     {
         return response([
-            'total' => $this->totalRevenue(),
-            'week' => $this->totalWeek(),
-            'month' => $this->totalMonth(),
-            'year' => $this->totalYear()
+            'total' => number_format($this->totalRevenue(), 2),
+            'week' => number_format($this->totalWeek(), 2),
+            'month' => number_format($this->totalMonth(), 2),
+            'year' => number_format($this->totalYear(), 2)
         ]);
     }
 
     public function commission()
     {
         return response([
-            'total' => $this->totalRevenue() / 100 * 70,
-            'week' => $this->totalWeek() / 100 * 70,
-            'month' => $this->totalMonth() / 100 * 70,
-            'year' => $this->totalYear() / 100 * 70
+            'total' => number_format($this->totalRevenue() / 100 * 70, 2),
+            'week' => number_format($this->totalWeek() / 100 * 70, 2),
+            'month' => number_format($this->totalMonth() / 100 * 70, 2),
+            'year' => number_format($this->totalYear() / 100 * 70, 2)
         ]);
     }
 
@@ -57,8 +57,8 @@ class DashboardController extends Controller
 
     public function totalWeek()
     {
-        $start = Carbon::today()->startOfWeek()->format('d-m-Y');
-        $end = Carbon::today()->format('d-m-Y');
+        $start = Carbon::today()->startOfWeek()->toDateTimeString();
+        $end = Carbon::today()->endOfDay()->toDateTimeString();
         $bookings = Booking::whereBetween('booking_data->arrival_date', [$start, $end])->get();
         $total = collect();
         $bookings->each(function ($booking) use ($total) {
@@ -71,8 +71,8 @@ class DashboardController extends Controller
 
     public function totalMonth()
     {
-        $start = Carbon::today()->startOfMonth()->format('d-m-Y');
-        $end = Carbon::today()->format('d-m-Y');
+        $start = Carbon::today()->startOfMonth()->toDateTimeString();
+        $end = Carbon::today()->endOfDay()->toDateTimeString();
 
         $bookings = Booking::whereBetween('booking_data->arrival_date', [$start, $end])->get();
 
@@ -86,10 +86,11 @@ class DashboardController extends Controller
 
     public function totalYear()
     {
-        $start = Carbon::today()->startOfYear()->format('d-m-Y');
-        $end = Carbon::today()->format('d-m-Y');
+        $start = Carbon::today()->startOfYear()->toDateTimeString();
+        $end = Carbon::today()->endOfDay()->toDateTimeString();
 
         $bookings = Booking::whereBetween('booking_data->arrival_date', [$start, $end])->get();
+        //return $bookings;
 
         $total = collect();
         $bookings->each(function ($booking) use ($total) {
@@ -143,9 +144,14 @@ class DashboardController extends Controller
 
     public function overviewGet(Carbon $date)
     {
-        $date = $date->format('d-m-Y');
-        $arrivals = Booking::where('booking_data->arrival_date', $date)->get();
-        $returns = Booking::where('booking_data->return_date', $date)->get();
+        $arrivals = Booking::whereBetween('booking_data->arrival_date', [
+            $date->startOfDay()->toDateTimeString(),
+            $date->endOfDay()->toDateTimeString()
+        ])->get();
+        $returns = Booking::whereBetween('booking_data->return_date', [
+            $date->startOfDay()->toDateTimeString(),
+            $date->endOfDay()->toDateTimeString()
+        ])->get();
 
         $collection = collect([
             'in' => $arrivals->count(),

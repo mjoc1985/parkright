@@ -3,32 +3,55 @@
 namespace App\Search;
 
 use App\Booking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BookingSearch
 {
+    /**
+     * @param Request $filters
+     * @return \Illuminate\Support\Collection
+     * @throws \Exception
+     */
     public static function filter(Request $filters)
     {
-        $arrivals = (new Booking())->newQuery();
-        $returns = (new Booking())->newQuery();
+        $arrivals = (new Booking)->newQuery();
+        $returns = (new Booking)->newQuery();
+        //dd($arrivals);
+        //dd(new Carbon($filters->input('dateTo')));
         
         // Search for all bookings for a specific date. Used for daily schedule.
         if ($filters->has('date')) {
-            $arrivals->where('booking_data->arrival_date', $filters['date']);
-            $returns->where('booking_data->return_date', $filters['date']);
-        }
-        // From date for booking range search.
+            $arrivals->whereBetween('booking_data->arrival_date', [
+                (new Carbon($filters->input('date')))->startOfDay()->toDateTimeString(),
+                (new Carbon($filters->input('date')))->endOfDay()->toDateTimeString()
+            ]);
+            $returns->whereBetween('booking_data->return_date', [
+                (new Carbon($filters->input('date')))->startOfDay()->toDateTimeString(),
+                (new Carbon($filters->input('date')))->endOfDay()->toDateTimeString()
+            ]);        }
+//        // From date for booking range search.
         if ($filters->has('dateFrom') && !$filters->has('dateTo')) {
-            $arrivals->where('booking_data->arrival_date', $filters['dateFrom']);
-        }
-        // To date for booking range search.
+            $arrivals->whereBetween('booking_data->arrival_date', [
+                (new Carbon($filters->input('dateFrom')))->startOfDay()->toDateTimeString(),
+                (new Carbon($filters->input('dateFrom')))->endOfDay()->toDateTimeString()
+            ]);        }
+//        // To date for booking range search.
         if ($filters->has('dateTo') && !$filters->has('dateFrom')) {
-            $returns->where('booking_data->return_date', $filters['dateTo']);
-        }
+            $returns->whereBetween('booking_data->return_date', [
+                (new Carbon($filters->input('dateTo')))->startOfDay()->toDateTimeString(),
+                (new Carbon($filters->input('dateTo')))->endOfDay()->toDateTimeString()
+            ]);        }
         // Bookings between dateFrom and dateTo.
         if ($filters->has('dateFrom') && $filters->has('dateTo')) {
-            $arrivals->whereBetween('booking_data->arrival_date', [$filters['dateFrom'], $filters['dateTo']]);
-            $returns->whereBetween('booking_data->return_date', [$filters['dateFrom'], $filters['dateTo']]);
+            $arrivals->whereBetween('booking_data->arrival_date', [
+                (new Carbon($filters->input('dateFrom')))->startOfDay()->toDateTimeString(),
+                (new Carbon($filters->input('dateTo')))->endOfDay()->toDateTimeString()
+            ]);
+            $returns->whereBetween('booking_data->return_date', [
+                (new Carbon($filters->input('dateFrom')))->startOfDay()->toDateTimeString(),
+                (new Carbon($filters->input('dateTo')))->endOfDay()->toDateTimeString()
+            ]);        
         }
         // Service type filter
         if ($filters->has('service')) {
@@ -62,5 +85,6 @@ class BookingSearch
             'incoming' => $arrivals->get(),
             'outgoing' => $returns->get()
         ]);
+        //dd($booking);
     }
 }
