@@ -78,8 +78,6 @@ class BookingsImport implements ToModel, WithHeadingRow
     {
         $agentProduct = AgentProduct::where('agent_id', $agentId)->where('agent_code', $productId)->first();
         
-        return $agentProduct->product->id;
-        
-        
+        return $agentProduct->product->id;        
     }
 }

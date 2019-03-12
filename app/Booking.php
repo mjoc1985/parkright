@@ -15,7 +15,6 @@ class Booking extends Model
         'booking_data->price_paid' => 'float',
         'booking_data->arrival_date' => 'date',
         'booking_data->return_date' => 'date'
-
     ];
 
 //    protected $dates = ['booking_data->arrival_date', 'booking_data->return_date'];
@@ -74,19 +73,14 @@ class Booking extends Model
         $data = json_decode($value);
         $data->arrival_date = (new Carbon($data->arrival_date))->format('d-m-Y');
         $data->return_date  = (new Carbon($data->return_date))->format('d-m-Y');
-//        $data->arrival_date = (new Carbon($data->arrival_date));
-//        $data->return_date = (new Carbon($data->return_date));
 
         $price = explode('£', $data->price_paid);
-//        if ($price[0] == '£') {
-        if ($price[1]) {
 
+        if ($price[1]) {
             $data->price_paid = $price[1];
         }
-        //}
-       //dd($data);
+   
         return $data;
-
     }
     
    

@@ -37,9 +37,9 @@
                                     <div class="relative">
                                         <select v-model="product.type" class="form-input">
                                             <option value="Park and Ride">Park and Ride</option>
-                                            <option value="Undercover M&G">Undercover M&G</option>
+                                            <option value="Undercover MG">Undercover M&G</option>
                                             <option value="Meet and Greet">Meet and Greet</option>
-                                            <option value="Return M&G">Return M&G</option>
+                                            <option value="Return MG">Return M&G</option>
                                         </select>
                                         <div class="form-select-caret">
                                             <i class="fas fa-caret-down"></i>

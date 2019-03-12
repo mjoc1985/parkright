@@ -96,7 +96,7 @@ class ReportController extends Controller
             'agents' => Agents::all()->toArray(),
             'products' => Product::all()->toArray(),
             'serviceType' => [
-                'Park and Ride', 'Undercover M&G', 'Return M&G'
+                'Park and Ride', 'Undercover MG', 'Return MG', 'Meet and Greet'
             ]
         ];
     }

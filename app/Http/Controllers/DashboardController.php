@@ -64,7 +64,6 @@ class DashboardController extends Controller
         $bookings->each(function ($booking) use ($total) {
             $total->push($booking->booking_data->price_paid);
         });
-        //return 2;
 
         return (float)$total->sum();
     }

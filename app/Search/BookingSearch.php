@@ -56,10 +56,11 @@ class BookingSearch
         // Service type filter
         if ($filters->has('service')) {
             $arrivals->whereHas('product', function ($query) use ($filters){
-               $query->where('products.type', $filters['service']); 
+               $query->where('products.type', $filters->input('service')); 
             });
+            //dd($arrivals);
             $returns->whereHas('product', function ($query) use ($filters){
-                $query->where('products.type', $filters['service']);
+                $query->where('products.type',$filters->input('service'));
             });
         }
         // Agent filter
