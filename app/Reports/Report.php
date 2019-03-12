@@ -36,21 +36,22 @@ class Report
     public function setArrivalsData($booking)
     {
         return [
-            'ref'          => $booking->ref,
-            'name'         => $this->getName($booking),
-            'terminal'     => $booking->booking_data->terminal_out,
-            'stay'         => $this->getLengthOfStay($booking),
-            'arrival'      => (new Carbon($booking->booking_data->arrival_date))->format('d-m-Y'),
-            'time'         => Carbon::createFromFormat('H:i', $booking->booking_data->arrival_time)->format('H:i'),
-            'return'       => (new Carbon($booking->booking_data->return_date))->format('d-m-Y'),
-            'return_time'  => $booking->booking_data->return_time,
-            'vehicle_reg'  => $booking->booking_data->vehicle_reg,
-            'vehicle'      => $booking->booking_data->vehicle,
-            'flight'       => $booking->booking_data->flight_out,
-            'mobile'       => $booking->booking_data->mobile,
-            'passengers'   => $booking->booking_data->passengers,
-            'type'         => 'In',
-            'sort'         => $booking->booking_data->arrival_date
+            'ref'            => $booking->ref,
+            'name'           => $this->getName($booking),
+            'terminal'       => $booking->booking_data->terminal_out,
+            'stay'           => $this->getLengthOfStay($booking),
+            'arrival'        => (new Carbon($booking->booking_data->arrival_date))->format('d-m-Y'),
+            'time'           => Carbon::createFromFormat('H:i', $booking->booking_data->arrival_time)->format('H:i'),
+            'return'         => (new Carbon($booking->booking_data->return_date))->format('d-m-Y'),
+            'return_time'    => $booking->booking_data->return_time,
+            'vehicle_reg'    => $booking->booking_data->vehicle_reg,
+            'vehicle_colour' => $booking->booking_data->vehicle_colour,
+            'vehicle'        => $booking->booking_data->vehicle,
+            'flight'         => $booking->booking_data->flight_out,
+            'mobile'         => $booking->booking_data->mobile,
+            'passengers'     => $booking->booking_data->passengers,
+            'type'           => 'In',
+            'sort'           => $booking->booking_data->arrival_date
         ];
     }
 
@@ -65,21 +66,22 @@ class Report
     {
         
         return [
-            'ref'          => $booking->ref,
-            'name'         => $this->getName($booking),
-            'terminal'     => $booking->booking_data->terminal_in,
-            'stay'         => $this->getLengthOfStay($booking),
-            'arrival'      => (new Carbon($booking->booking_data->arrival_date))->format('d-m-Y'),
-            'time'         => Carbon::createFromFormat('H:i', $booking->booking_data->return_time)->format('H:i'),
-            'vehicle_reg'  => $booking->booking_data->vehicle_reg,
-            'vehicle'      => $booking->booking_data->vehicle,
-            'flight'       => $booking->booking_data->flight_in,
-            'mobile'       => $booking->booking_data->mobile,
-            'return'       => (new Carbon($booking->booking_data->return_date))->format('d-m-Y'),
-            'return_time'  => $booking->booking_data->return_time,
-            'passengers'   => $booking->booking_data->passengers,
-            'type'         => 'Out',
-            'sort'         => $booking->booking_data->return_date
+            'ref'            => $booking->ref,
+            'name'           => $this->getName($booking),
+            'terminal'       => $booking->booking_data->terminal_in,
+            'stay'           => $this->getLengthOfStay($booking),
+            'arrival'        => (new Carbon($booking->booking_data->arrival_date))->format('d-m-Y'),
+            'time'           => Carbon::createFromFormat('H:i', $booking->booking_data->return_time)->format('H:i'),
+            'vehicle_reg'    => $booking->booking_data->vehicle_reg,
+            'vehicle'        => $booking->booking_data->vehicle,
+            'vehicle_colour' => $booking->booking_data->vehicle_colour,
+            'flight'         => $booking->booking_data->flight_in,
+            'mobile'         => $booking->booking_data->mobile,
+            'return'         => (new Carbon($booking->booking_data->return_date))->format('d-m-Y'),
+            'return_time'    => $booking->booking_data->return_time,
+            'passengers'     => $booking->booking_data->passengers,
+            'type'           => 'Out',
+            'sort'           => $booking->booking_data->return_date
         ];
     }
 

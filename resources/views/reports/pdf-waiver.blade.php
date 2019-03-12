@@ -50,7 +50,7 @@
     <tr class="odd border border-black h-8">
         <td class="border border-black">{{$booking['ref']}}</td>
         <td class="border border-black">{{$booking['name']}}</td>
-        <td class="border border-black">{{$booking['arrival_date']}}</td>
+        <td class="border border-black">{{$booking['arrival']}}</td>
         <td class="border border-black">{{$booking['time']}}</td>
     </tr>
     <tr class="border border-black h-8">
@@ -61,7 +61,7 @@
     </tr>
     <tr class="odd border border-black h-8">
         <td class="border border-black">{{$booking['terminal']}}</td>
-        <td class="border border-black">{{$booking['return_date']}}</td>
+        <td class="border border-black">{{$booking['return']}}</td>
         <td class="border border-black">{{$booking['return_time']}}</td>
         <td class="border border-black">{{$booking['flight']}}</td>
     </tr>

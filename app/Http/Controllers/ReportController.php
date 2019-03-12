@@ -51,13 +51,16 @@ class ReportController extends Controller
      *
      * @param Request $request
      * @return mixed
+     * @throws \Exception
      */
     public function waivers(Request $request)
     {
         set_time_limit(0);
-        $bookings = Booking::where('booking_data->arrival_date', $request['date'])->get();
-        $bookings = (new Waiver(Carbon::createFromFormat('d-m-Y', $request['date'])))->build($bookings);
-        $html = view('reports.pdf-waiver', compact('bookings'));
+        //$date = (new Carbon($request['date']));
+        //$bookings = Booking::whereBetween('booking_data->arrival_date', [$date->startOfDay(), $date->endOfDay()])->get();
+        $bookings = (new Waiver($request));
+        //dd($bookings);
+        $html = view('reports.pdf-waiver')->with('bookings', $bookings->bookings);
         //$pdf = App::make('dompdf.wrapper');
         $pdf = PDF::loadHtml($html);
         //$pdf->setBasePath('/css/app.css');
