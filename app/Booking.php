@@ -79,8 +79,10 @@ class Booking extends Model
 
         $price = explode('£', $data->price_paid);
 //        if ($price[0] == '£') {
-           
+        if ($price[1]) {
+
             $data->price_paid = $price[1];
+        }
         //}
        //dd($data);
         return $data;
