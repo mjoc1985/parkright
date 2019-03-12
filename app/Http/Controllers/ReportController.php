@@ -59,7 +59,7 @@ class ReportController extends Controller
         //$date = (new Carbon($request['date']));
         //$bookings = Booking::whereBetween('booking_data->arrival_date', [$date->startOfDay(), $date->endOfDay()])->get();
         $bookings = (new Waiver($request));
-        //dd($bookings);
+        dd($bookings);
         $html = view('reports.pdf-waiver')->with('bookings', $bookings->bookings);
         //$pdf = App::make('dompdf.wrapper');
         $pdf = PDF::loadHtml($html);
