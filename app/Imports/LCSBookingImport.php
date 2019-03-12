@@ -43,9 +43,9 @@ class LCSBookingImport implements ToModel, WithHeadingRow
                 'last_name' => $name[2],
                 'phone' => null,
                 'mobile' => $row['mobile'],
-                'arrival_date' => $this->getDate($row['datefrom']),
+                'arrival_date' => $this->getDate($row['datefrom'], $row['meettime']),
                 'arrival_time' => $row['meettime'],
-                'return_date' => $this->getDate($row['returndate']),
+                'return_date' => $this->getDate($row['returndate'], $row['returntime']),
                 'return_time' => $row['returntime'],
                 'terminal_out' => $row['term'],
                 'terminal_in' => $row['term'],
@@ -94,11 +94,11 @@ class LCSBookingImport implements ToModel, WithHeadingRow
      * @return string
      * @throws \Exception
      */
-    public function getDate($date)
+    public function getDate($date, $time)
     {
        // $newDate = preg_replace('~\x{00a0}~u', ' ', $date);
-      $newDate = (new Carbon($date))->toDateTimeString();
-        return $newDate;
+      $newDate = Carbon::createFromFormat('d/m/Y H:i', $date . ' ' .$time);
+        return $newDate->toDateTimeString();
     }
 
     public function registerEvents(): array
