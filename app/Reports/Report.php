@@ -119,7 +119,7 @@ class Report
      */
     public function searchBookings(Request $request)
     {
-        return BookingSearch::filter($request);
+        return BookingSearch::filter($request)->sortBy('sort');
     }
 
     /**
