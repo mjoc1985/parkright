@@ -20,6 +20,7 @@
                             <th class="px-2">Veh<span class="sm:hidden md:inline">icle</span></th>
                             <th class="px-2 sm:hidden md:block">Agent/Product</th>
                             <th class="px-2 text-center">Passengers</th>
+                            <th class="px-2 text-center">Price</th>
                             <th class="pr-10">&nbsp</th>
                         </tr>
                         </thead>
@@ -57,6 +58,10 @@
                             </td>
                             <td class="md:py-4 md:table-cell sm:hidden px-2 font-semibold text-primary-black text-center">
                                 {{booking.booking_data.passengers}}
+                            </td>
+
+                            <td class="md:py-4 md:table-cell sm:hidden px-2 font-semibold text-primary-black text-center">
+                                £{{booking.booking_data.price_paid}}
                             </td>
 
 
