@@ -51,6 +51,7 @@ class Report
             'mobile'         => $booking->booking_data->mobile,
             'passengers'     => $booking->booking_data->passengers,
             'type'           => 'In',
+            'price_paid'     => $booking->booking_data->price_paid,
             'sort'           => $booking->booking_data->arrival_date
         ];
     }
@@ -81,6 +82,7 @@ class Report
             'return_time'    => $booking->booking_data->return_time,
             'passengers'     => $booking->booking_data->passengers,
             'type'           => 'Out',
+            'price_paid'     => $booking->booking_data->price_paid,
             'sort'           => $booking->booking_data->return_date
         ];
     }

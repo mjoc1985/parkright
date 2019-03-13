@@ -25,6 +25,7 @@
             <th class="px-2">Flight</th>
             <th class="px-2">Mobile</th>
             <th class="px-2">Passengers</th>
+            <th class="px-2">Price</th>
         </tr>
         </thead>
         <tbody>
@@ -46,6 +47,7 @@
                 <td class="px-2">{{ $booking['flight'] }}</td>
                 <td class="px-2">{{ $booking['mobile'] }}</td>
                 <td class="px-2 text-center">{{ $booking['passengers'] }}</td>
+                <td class="px-2 text-center">{{ $booking['price_paid'] }}</td>
 
             </tr>
         @endforeach
