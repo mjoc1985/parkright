@@ -173,7 +173,7 @@
                     })
             }, 
             waiver(){
-                axios.get('/reports/schedule/waivers' + '?date=' + this.date + '&type=in', {responseType: 'blob'})
+                axios.get('/reports/schedule/waivers' + '?waiverDate=' + this.date + '&type=in', {responseType: 'blob'})
                     .then(response => {
                         const blob = new Blob([response.data], {type: 'application/pdf'});
                         let link = document.createElement('a');
