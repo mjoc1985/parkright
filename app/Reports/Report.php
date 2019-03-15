@@ -52,7 +52,7 @@ class Report
             'passengers'     => $booking->booking_data->passengers,
             'type'           => 'In',
             'price_paid'     => $booking->booking_data->price_paid,
-            'sort'           => Carbon::parse($booking->booking_data->arrival_date)
+            'sort'           => (new Carbon($booking->booking_data->arrival_date . ' ' . $booking->booking_data->arrival_time))
         ];
     }
 
@@ -83,7 +83,7 @@ class Report
             'passengers'     => $booking->booking_data->passengers,
             'type'           => 'Out',
             'price_paid'     => $booking->booking_data->price_paid,
-            'sort'           => Carbon::parse($booking->booking_data->return_date)
+            'sort'           => (new Carbon($booking->booking_data->return_date . ' ' . $booking->booking_data->return_time))
         ];
     }
 

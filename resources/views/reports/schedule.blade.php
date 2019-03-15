@@ -29,7 +29,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($schedule->bookings as $booking)
+        @foreach($schedule->bookings->sortBy('sort') as $booking)
             <tr class="border-b border-grey">
                 <td class="px-2"><strong>{{ $booking['ref']}}</strong></td>
                 <td class="px-2">{{ $booking['name'] }}</td>

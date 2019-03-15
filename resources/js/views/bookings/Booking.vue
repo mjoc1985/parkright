@@ -7,6 +7,30 @@
                 <router-link class="btn py-2 text-primary" :to="{name: 'booking-index'}">Back</router-link>
             </div>
             <div class="card-body clearfix">
+                <div class="w-full border-b- border-grey-lighter\ clearfix my-2">
+                    <div class="w-1/3 p-4 md:pl-10 float-left">
+                        <h3 class="text-primary-dark">Product Details</h3>
+                    </div>
+                    <div class="w-2/3 p-4 text-primary-black float-left">
+                        <div class="w-full md:flex sm:block justify-between">
+                            <div class="font-semibold sm:w-full md:w-1/2 md:pr-2">
+                                <label>Product</label>
+                                <input v-model="booking.product.name" type="text" class="form-input">
+
+                            </div>
+                            <div class="font-semibold sm:w-full md:w-1/4 md:pl-2 md:pr-2">
+                                <label>Price Paid</label>
+                                <input v-model="booking.booking_data.price_paid" type="text" class="form-input">
+
+                            </div>
+                            <div class="font-semibold sm:w-full md:w-1/4 md:pl-2">
+                                <label>Earnings</label>
+                                <input type="text" class="form-input" :value="booking.booking_data.price_paid / 100 * 70">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="w-full border-b border-grey-lighter clearfix my-2">
                     <div class="w-1/3 p-4 md:pl-10 float-left">
                         <h3 class="text-primary-dark">Customer Details</h3>
@@ -104,9 +128,9 @@
             </div> <!-- end card body -->
 
             <div class="card-footer">
-               
-                    <button @click.prevent="save" class=" btn btn-primary">Save Booking</button>
-                
+
+                <button id="submit" @click.prevent="save" class=" btn btn-primary w-48">Save Booking</button>
+
             </div>
         </div>
 
@@ -131,10 +155,19 @@
                         this.booking = response.data;
                     })
             },
-            save(){
+            save() {
+                let saveButton = document.getElementById('submit');
+                let buttonContent = saveButton.innerHTML;
+                saveButton.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
                 axios.post('bookings/' + this.booking.id + '/update', this.$data.booking)
+                    
                     .then(response => {
-                        console.log(response)
+                        saveButton.innerHTML = buttonContent;
+                        this.$notify({
+                            //title: 'Success',
+                            type: response.data.status,
+                            text: response.data.msg
+                        })
                     })
             }
         }

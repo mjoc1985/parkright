@@ -29,7 +29,7 @@ class ReportController extends Controller
     public function schedulePreview(Request $request)
     {
         $schedule = (new Schedule($request));
-        
+       
         return view('reports.schedule', compact('schedule'));
     }
 

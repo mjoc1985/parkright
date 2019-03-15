@@ -16,6 +16,7 @@ class Booking extends Model
         'booking_data->arrival_date' => 'date',
         'booking_data->return_date' => 'date'
     ];
+    //protected $appends = ['sortTime'];
 
 //    protected $dates = ['booking_data->arrival_date', 'booking_data->return_date'];
 
@@ -33,6 +34,7 @@ class Booking extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
+    
     
 
 //    public function product()
@@ -73,15 +75,33 @@ class Booking extends Model
         $data = json_decode($value);
         $data->arrival_date = (new Carbon($data->arrival_date))->format('d-m-Y');
         $data->return_date  = (new Carbon($data->return_date))->format('d-m-Y');
+        $data->price_paid   =  preg_replace('/£/','', $data->price_paid);
 
-        $price = explode('£', $data->price_paid);
 
-        if ($price[1]) {
-            $data->price_paid = $price[1];
-        }
+//        $price = explode('£', $data->price_paid);
+////        $price = preg_replace('£','', $data->price_paid);
+//
+//        if ($price[1]) {
+//            $data->price_paid = $price[1];
+//        }
    
         return $data;
     }
+//
+//    /**
+//     * @param null $sort
+//     * @return Carbon
+//     * @throws \Exception
+//     */
+//    public function setSortTime($sort = null)
+//    {
+//        if ($sort == 'arrival'){
+//            return (new Carbon($this->booking_data->arrival_date));
+//        }
+//        if ($sort == 'return') {
+//            return (new Carbon($this->booking_data->return_date));
+//        }
+//    }
     
    
 }

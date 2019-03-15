@@ -6,6 +6,7 @@ use App\Agents;
 use App\Booking;
 use App\Imports\BookingsImport;
 use App\Imports\LCSBookingImport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -13,7 +14,7 @@ class BookingController extends Controller
 {
     public function import()
     {
-       // return request()->all();
+        // return request()->all();
         $agent = Agents::find(request('agent'));
         //return $agent;
         $file = \request()->file('file');
@@ -22,25 +23,28 @@ class BookingController extends Controller
         } else {
             Excel::import(new BookingsImport($agent), $file);
         }
-        
+
         return response([
             'status' => 'success',
-            'msg'    => 'Upload successful'
+            'msg' => 'Upload successful'
         ]);
     }
-    
+
     public function get()
     {
         if (request()->has('query')) {
             $bookings = Booking::search(request('query'))->paginate(10);
-           
+
         } else {
             $bookings = Booking::paginate(10);
-            
+
         }
         $bookings->getCollection()->transform(function ($booking) {
             $booking->agent = $booking->agent;
             $booking->product = $booking->product;
+
+            // $booking->booking_data->arrival_date = $arrival->format('d-m-Y');
+            //$booking->booking_data->return_date = (new Carbon($booking->booking_data->return_date))->format('d-m-Y');
             return $booking;
         });
         return response([
@@ -48,6 +52,7 @@ class BookingController extends Controller
             'bookings' => $bookings
         ]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -71,7 +76,7 @@ class BookingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -82,7 +87,7 @@ class BookingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Booking  $booking
+     * @param  \App\Booking $booking
      * @return \Illuminate\Http\Response
      */
     public function show(Booking $booking)
@@ -90,10 +95,10 @@ class BookingController extends Controller
         //
     }
 
-    
+
     public function edit($id)
     {
-        return Booking::find($id)->load('agent');   
+        return Booking::find($id)->load('agent', 'product');
     }
 
     /**
@@ -106,15 +111,30 @@ class BookingController extends Controller
     public function update(Request $request, $id)
     {
         $booking = Booking::find($id);
-        $booking->update($request->except(['agent']));
-        return $booking;
-        
+        try {
+            $booking->update($request->except(['agent', 'product']));
+        } catch (\Exception $e) {
+            return response([
+                'status' => 'error',
+                'error' => [
+                    'msg' => $e->getMessage(),
+                    'code' => $e->getCode()
+                ]
+            ], 422);
+
+        }
+        return response([
+            'status' => 'success',
+            'msg'   => 'Booking updated.'
+        ], 200);
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Booking  $booking
+     * @param  \App\Booking $booking
      * @return \Illuminate\Http\Response
      */
     public function destroy(Booking $booking)

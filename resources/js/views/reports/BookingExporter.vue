@@ -91,11 +91,11 @@
                     </div> <!-- end card body -->
 
                     <div class="card-footer sm:block">
-                        <button @click.prevent="preview" class="btn btn-primary md:inline sm:block sm:my-2 md:w-auto sm:w-full"><i class="fas fa-eye mr-2"></i>Preview</button>
+                        <button id="previewButton" @click.prevent="preview" class="btn btn-primary md:inline sm:block sm:my-2 md:w-40 sm:w-full"><i class="fas fa-eye mr-2"></i>Preview</button>
 
                         <!--<button @click.prevent="waiver" class="btn btn-primary md:inline sm:block sm:my-2 md:w-auto sm:w-full"><i class="fas fa-file-download mr-2"></i>Waivers</button>-->
 
-                        <button @click.prevent="download" class="btn btn-primary md:inline sm:block sm:my-2 md:w-auto sm:w-full"><i class="fas fa-download mr-2"></i>Download Schedule</button>
+                        <button id="downloadButton" @click.prevent="download" class="btn btn-primary md:inline sm:block sm:my-2 md:w-64 sm:w-full"><i class="fas fa-download mr-2"></i>Download Bookings</button>
 
 
                     </div>
@@ -161,9 +161,12 @@
                 return new URLSearchParams(query).toString();
             },
             download() {
+                let button        = document.getElementById('downloadButton');
+                let buttonContent = button.innerHTML;
+                button.innerHTML  = '<i class="fa fa-spinner fa-spin"></i>';
                 axios.get('/reports/bookings/export?' + this.buildQuery(), {responseType: 'arraybuffer'})
                     .then(response => {
-                        console.log(response);
+                        button.innerHTML = buttonContent;
                         const blob = new Blob([response.data], {type: 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
                         let link = document.createElement('a');
                         console.log(blob);
@@ -175,11 +178,16 @@
                     })
             },
             preview() {
+                let button        = document.getElementById('previewButton');
+                let buttonContent = button.innerHTML;
+                button.innerHTML  = '<i class="fa fa-spinner fa-spin"></i>';
                 axios.get('/reports/bookings/preview?' + this.buildQuery())
                     .then(response => {
                         this.previewData.dateFrom = this.dateFrom;
                         this.previewData.dateTo = this.dateTo;
                         this.previewData.view = response.data
+                        
+                        button.innerHTML = buttonContent;
                     })
             },
             fetch(){
