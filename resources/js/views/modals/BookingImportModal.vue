@@ -86,6 +86,7 @@
                 this.processFile();
             },
             processFile() {
+                               
                 this.formData = new FormData();
                 this.formData.append('file', this.$refs.file.files[0]);
                 this.formData.append('agent', this.agent);
@@ -98,6 +99,7 @@
                     }
                 }).then(success => {
                     this.message = success.data.msg;
+                    this.$emit('importComplete', this.success.data.bookings);
                     button.innerHTML = '<i class="fas fa-upload"></i>\n' +
                         '                            <span class="ml-2">Upload File</span>';
                     this.$notify({

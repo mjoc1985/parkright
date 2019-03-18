@@ -48,6 +48,7 @@ class Report
             'vehicle_colour' => $booking->booking_data->vehicle_colour,
             'vehicle'        => $booking->booking_data->vehicle,
             'flight'         => $booking->booking_data->flight_out,
+            'flight_in'      => $booking->booking_data->flight_in,
             'mobile'         => $booking->booking_data->mobile,
             'passengers'     => $booking->booking_data->passengers,
             'type'           => 'In',

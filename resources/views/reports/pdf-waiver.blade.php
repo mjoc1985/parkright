@@ -63,7 +63,7 @@
         <td class="border border-black">{{$booking['terminal']}}</td>
         <td class="border border-black">{{$booking['return']}}</td>
         <td class="border border-black">{{$booking['return_time']}}</td>
-        <td class="border border-black">{{$booking['flight']}}</td>
+        <td class="border border-black">{{$booking['flight_in']}}</td>
     </tr>
     <tr class="border border-black h-8">
         <td class="border border-black"><b>Vehicle</b></td>

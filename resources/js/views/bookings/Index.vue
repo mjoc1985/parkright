@@ -5,7 +5,7 @@
                 <h1>Bookings</h1>
                 <search-bookings @bookings="updateBookings"></search-bookings>
                 <template>
-                <import-button class="sm:hidden md:inline"></import-button>
+                <import-button @importComplete="updateBookings" class="sm:hidden md:inline"></import-button>
                 </template>
             </div>
             <div class="card-body p-0">
@@ -141,7 +141,6 @@
 
                 this.bookings = data.data;
                 this.setPages(data);
-
 
             },
             changePage(page) {

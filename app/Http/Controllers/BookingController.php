@@ -26,7 +26,8 @@ class BookingController extends Controller
 
         return response([
             'status' => 'success',
-            'msg' => 'Upload successful'
+            'msg' => 'Upload successful',
+            'bookings' => Booking::all()
         ]);
     }
 
