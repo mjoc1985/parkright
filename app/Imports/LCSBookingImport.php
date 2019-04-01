@@ -36,14 +36,18 @@ class LCSBookingImport implements ToModel, WithHeadingRow
         }
 
             $name = explode(" ", $row['name']);
-            if (!$name[2]){
-                $name[2] = '?';
+            if (count($name) < 3){
+                $firstname = '?';
+                $lastname = $name[1];
+            } else {
+                $firstname = $name[1];
+                $lastname = $name[2];
             }
 
             $bookingData = [
                 'title' => $name[0],
-                'first_name' => $name[1],
-                'last_name' => $name[2],
+                'first_name' => $firstname,
+                'last_name' => $lastname,
                 'phone' => null,
                 'mobile' => $row['mobile'],
                 'arrival_date' => $this->getDate($row['datefrom'], $row['meettime']),
