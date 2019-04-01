@@ -36,6 +36,9 @@ class LCSBookingImport implements ToModel, WithHeadingRow
         }
 
             $name = explode(" ", $row['name']);
+            if (!$name[2]){
+                $name[2] = ' ';
+            }
 
             $bookingData = [
                 'title' => $name[0],
