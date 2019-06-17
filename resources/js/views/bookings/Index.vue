@@ -88,9 +88,15 @@
             </div>
             <div class="card-footer p-4 flex font-semibold">
                 <div class="flex flex-1">
-                    <a class="mr-2 text-primary" v-if="page.previous" href="#"
+                    <a class=" text-primary" v-if="page.current > 1" href="#" @click.prevent="changePage(page.first)">First</a>
+                   
+                    <a class="text-primary ml-2" v-if="page.last" href="#" @click.prevent="changePage(page.last)">Last</a>
+                    <span class="mx-1">|</span>
+                    <a class="text-primary mr-2" v-if="page.previous" href="#"
                        @click.prevent="changePage(page.previous)">Previous</a>
-                    <a class="mr-2 text-primary" v-if="page.next" href="#" @click.prevent="changePage(page.next)">Next</a>
+                    <a class=" text-primary" v-if="page.next" href="#" @click.prevent="changePage(page.next)">Next</a>
+
+
 
                 </div>
                 <div class="flex text-primary-dark">

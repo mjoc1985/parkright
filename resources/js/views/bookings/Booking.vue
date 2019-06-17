@@ -92,6 +92,19 @@
                             </div>
                         </div>
 
+                        <div class="w-full md:flex sm:block justify-between md:mt-4">
+                            <div class="font-semibold sm:w-full md:w-1/2 md:pr-2">
+                                <label>Outbound Flight</label>
+                                <input v-model="booking.booking_data.flight_out" type="text" class="form-input">
+
+                            </div>
+                            <div class=" font-semibold sm:w-full md:w-1/2 md:pl-2">
+                                <label>Return Flight</label>
+                                <input v-model="booking.booking_data.flight_in" type="text" class="form-input">
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
@@ -116,9 +129,7 @@
                             <div class="font-semibold sm:w-full md:w-1/2 md:pr-2">
                                 <label>Vehicle Colour</label>
                                 <input v-model="booking.booking_data.vehicle_colour" type="text" class="form-input">
-
                             </div>
-
                         </div>
 
                     </div>
