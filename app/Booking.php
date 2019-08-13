@@ -76,14 +76,6 @@ class Booking extends Model
         $data->arrival_date = (new Carbon($data->arrival_date))->format('d-m-Y');
         $data->return_date  = (new Carbon($data->return_date))->format('d-m-Y');
         $data->price_paid   =  preg_replace('/£/','', $data->price_paid);
-
-
-//        $price = explode('£', $data->price_paid);
-////        $price = preg_replace('£','', $data->price_paid);
-//
-//        if ($price[1]) {
-//            $data->price_paid = $price[1];
-//        }
    
         return $data;
     }
