@@ -27,9 +27,14 @@ class UserSeeder extends Seeder
 //                'name' => 'Admin',
 //                'password' => bcrypt('secret')
 //            ],
+//            [
+//                'email' => 'andy@vacationcareparking.com',
+//                'name' => 'Andy',
+//                'password' => bcrypt('secret321')
+//            ],
             [
-                'email' => 'andy@vacationcareparking.com',
-                'name' => 'Andy',
+                'email' => 'deanpriday@gmail.com',
+                'name' => 'Dean',
                 'password' => bcrypt('secret321')
             ],
         ]);
