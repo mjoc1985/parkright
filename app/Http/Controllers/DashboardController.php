@@ -7,6 +7,11 @@ use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
+    /**
+     * Return revenue data.
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function revenue()
     {
         return response([
@@ -17,6 +22,11 @@ class DashboardController extends Controller
         ]);
     }
 
+    /**
+     * Return commission data.
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function commission()
     {
         return response([
@@ -28,6 +38,8 @@ class DashboardController extends Controller
     }
 
     /**
+     * Return overview data.
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @throws \Exception
      */
@@ -37,12 +49,12 @@ class DashboardController extends Controller
             'currentCount' => $this->getCurrentBookingCount(),
             'today' => $this->overviewToday(),
             'week' => $this->overviewWeek(),
-
         ]);
     }
 
-
     /**
+     * Return total revenue data.
+     *
      * @return float
      */
     public function totalRevenue()
@@ -55,6 +67,11 @@ class DashboardController extends Controller
         return (float)$total->sum();
     }
 
+    /**
+     * Return total weekly data.
+     *
+     * @return float
+     */
     public function totalWeek()
     {
         $start = Carbon::today()->startOfWeek()->toDateTimeString();
@@ -68,6 +85,11 @@ class DashboardController extends Controller
         return (float)$total->sum();
     }
 
+    /**
+     * Return total month data.
+     *
+     * @return float
+     */
     public function totalMonth()
     {
         $start = Carbon::today()->startOfMonth()->toDateTimeString();
@@ -83,13 +105,17 @@ class DashboardController extends Controller
         return (float)$total->sum();
     }
 
+    /**
+     * Return total annual data.
+     *
+     * @return float
+     */
     public function totalYear()
     {
         $start = Carbon::today()->startOfYear()->toDateTimeString();
         $end = Carbon::today()->endOfDay()->toDateTimeString();
 
         $bookings = Booking::whereBetween('booking_data->arrival_date', [$start, $end])->get();
-        //return $bookings;
 
         $total = collect();
         $bookings->each(function ($booking) use ($total) {
@@ -99,6 +125,11 @@ class DashboardController extends Controller
         return (float)$total->sum();
     }
 
+    /**
+     * Return current booking count.
+     *
+     * @return int
+     */
     public function getCurrentBookingCount()
     {
         $collection = collect();
@@ -117,6 +148,8 @@ class DashboardController extends Controller
     }
 
     /**
+     * Return today's overview.
+     *
      * @return \Illuminate\Support\Collection
      * @throws \Exception
      */
@@ -126,6 +159,8 @@ class DashboardController extends Controller
     }
 
     /**
+     * Return weekly overview data.
+     *
      * @throws \Exception
      */
     public function overviewWeek()
@@ -141,6 +176,12 @@ class DashboardController extends Controller
     }
 
 
+    /**
+     * Return overview.
+     *
+     * @param Carbon $date
+     * @return \Illuminate\Support\Collection
+     */
     public function overviewGet(Carbon $date)
     {
         $arrivals = Booking::whereBetween('booking_data->arrival_date', [

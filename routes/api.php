@@ -27,16 +27,16 @@ Route::group(['middleware' => 'jwt.refresh'], function(){
 });
 
 Route::group(['prefix' => 'bookings'], function (){
-    Route::get('/', 'BookingController@get');
+    Route::get('/', 'BookingController@index');
     Route::get('{id}/edit', 'BookingController@edit');
     Route::post('import', 'BookingController@import');
-    Route::post('{id}/update', 'BookingController@update');
+    Route::patch('{id}/update', 'BookingController@update');
 
 });
 
 Route::group(['prefix' => 'reports'], function (){
     // Schedule Reports
-   Route::get('/schedule/preview', 'ReportController@schedulePreview'); 
+   Route::get('/schedule/preview', 'ReportController@schedulePreview');
    Route::get('/schedule/export', 'ReportController@scheduleExport');
    Route::get('/schedule/waivers', 'ReportController@waivers');
    Route::get('/schedule/filterData', 'ReportController@filterData');
@@ -46,50 +46,30 @@ Route::group(['prefix' => 'reports'], function (){
 });
 
 Route::group(['prefix' => 'webhooks'], function (){
-   Route::post('email/import', 'WebhookController@emailImport'); 
+   Route::post('email/import', 'WebhookController@emailImport');
 });
 
 Route::group(['prefix' => 'agents'], function (){
-    Route::get('/', 'AgentsController@all');
+    Route::get('/', 'AgentsController@index');
     Route::get('{id}/edit', 'AgentsController@edit');
-    Route::post('{id}/update', 'AgentsController@update');
-    Route::get('{id}/products', 'AgentsController@getProducts');
-    Route::get('{id}/products/create', 'AgentsController@createProduct');
-    Route::post('products/store', 'AgentsController@saveProduct');
-    Route::post('products/{product}/update', 'AgentsController@updateProduct');
-    Route::get('products/{product}/edit', 'AgentsController@getProduct');
-    
+    Route::patch('{id}/update', 'AgentsController@update');
+    Route::get('{id}/products', 'AgentsProductsController@index');
+    Route::get('{id}/products/create', 'AgentsProductsController@create');
+    Route::post('products/store', 'AgentsProductsController@store');
+    Route::patch('products/{product}/update', 'AgentsController@updateProduct');
+    Route::get('products/{product}/edit', 'AgentsProductsController@show');
+
 });
 
 Route::group(['prefix' => 'products'], function() {
-   Route::get('/', 'ProductController@all');
+   Route::get('/', 'ProductController@index');
    Route::get('{id}/edit', 'ProductController@edit');
-   Route::post('{id}/update', 'ProductController@update');
+   Route::patch('{id}/update', 'ProductController@update');
+   Route::post('/', 'ProductController@store');
 });
 
 Route::group(['prefix' => 'dashboard'], function (){
    Route::get('revenue', 'DashboardController@revenue');
    Route::get('commission', 'DashboardController@commission');
    Route::get('booking/overview', 'DashboardController@overview');
-});
-
-Route::get('/fix-dates', function (){
-   $bookings = \App\Booking::all();
-   foreach ($bookings as $booking){
-       $data = $booking->booking_data;
-       //dd($data);
-       $arr = (new \Carbon\Carbon($data->arrival_date . ' ' . $data->arrival_time))->format('Y-m-d H:i:s');
-       $ret = (new \Carbon\Carbon($data->return_date . ' ' . $data->return_time))->format('Y-m-d H:i:s');
-//       unset($data->arrival_date);
-//       unset($data->return_date);
-       $data->arrival_date = $arr;
-       $data->return_date = $ret;
-        
-
-       //dd($arr);
-       //dd($data);
-       //dd($booking->booking_data['arrival_date']);
-      
-       $booking->update(['booking_data' => $data]);
-   }
 });

@@ -9,16 +9,15 @@ use Laravel\Scout\Searchable;
 class Booking extends Model
 {
     use Searchable;
+
     protected $guarded = [];
+
     protected $casts = [
         'booking_data' => 'json',
         'booking_data->price_paid' => 'float',
         'booking_data->arrival_date' => 'date',
         'booking_data->return_date' => 'date'
     ];
-    //protected $appends = ['sortTime'];
-
-//    protected $dates = ['booking_data->arrival_date', 'booking_data->return_date'];
 
     public function agent()
     {
@@ -34,13 +33,6 @@ class Booking extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
-    
-    
-
-//    public function product()
-//    {
-//        return $this->hasOneThrough(Product::class, AgentProduct::class, 'product_id', 'id', 'booking_data->product_id');
-//    }
 
     public function toSearchableArray()
     {
@@ -76,24 +68,7 @@ class Booking extends Model
         $data->arrival_date = (new Carbon($data->arrival_date))->format('d-m-Y');
         $data->return_date  = (new Carbon($data->return_date))->format('d-m-Y');
         $data->price_paid   =  preg_replace('/£/','', $data->price_paid);
-   
+
         return $data;
     }
-//
-//    /**
-//     * @param null $sort
-//     * @return Carbon
-//     * @throws \Exception
-//     */
-//    public function setSortTime($sort = null)
-//    {
-//        if ($sort == 'arrival'){
-//            return (new Carbon($this->booking_data->arrival_date));
-//        }
-//        if ($sort == 'return') {
-//            return (new Carbon($this->booking_data->return_date));
-//        }
-//    }
-    
-   
 }

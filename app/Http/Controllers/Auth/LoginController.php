@@ -52,32 +52,24 @@ class LoginController extends Controller
             ], 400);
         }
         return $this->respondWithToken($token);
-//        return response([
-//            'status' => 'success'
-//        ])
-//            ->header('Authorization', $token);
     }
 
     public function user()
     {
-        //return response()->json(auth()->user());
-
-        //$user = User::find(auth()->user()->id);
         return response([
             'status' => 'success',
             'data' => \auth()->user()
         ]);
     }
+
     public function me()
     {
         return response()->json(auth()->user());
     }
+
     public function refresh()
     {
         return $this->respondWithToken(auth()->refresh());
-//        return response([
-//            'status' => 'success'
-//        ]);
     }
 
     public function logout()

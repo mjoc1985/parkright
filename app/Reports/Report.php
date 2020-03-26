@@ -23,7 +23,6 @@ class Report
         $this->type             = $request['type'] ?: 'both';
         $this->serviceType      = $request['service'];
         $this->bookings         = $this->search($request);
-
     }
 
     /**
@@ -66,7 +65,6 @@ class Report
      */
     public function setReturnsData($booking)
     {
-        
         return [
             'ref'            => $booking->ref,
             'name'           => $this->getName($booking),
@@ -90,7 +88,7 @@ class Report
 
     /**
      * Returns customer name and title string.
-     * 
+     *
      * @param $booking
      * @return string
      */
@@ -125,7 +123,7 @@ class Report
 
     /**
      * Calculate the length of stay.
-     * 
+     *
      * @param $booking
      * @return int
      */
@@ -141,14 +139,14 @@ class Report
      * @return string
      */
     public function createTimeStamp($date)
-    {   
+    {
         $date = Carbon::createFromFormat('d-m-Y H:i', $date)->format('Y-m-d H:i:s');
         return $date;
     }
 
     /**
      * Get all arrivals for specified date.
-     * 
+     *
      * @param $date
      * @return mixed
      */
@@ -159,7 +157,7 @@ class Report
 
     /**
      * Get all returns for specified date.
-     * 
+     *
      * @param $date
      * @return mixed
      */
@@ -170,22 +168,22 @@ class Report
 
     /**
      * Process and combines all bookings for export. All date is then sorted by the date/time.
-     * 
+     *
      * @param $bookings
      * @return \Illuminate\Support\Collection
      */
     public function processForExport($bookings)
     {
         $type = $this->type;
-        
+
         $collection = Collect();
-        
+
         if ($type == 'both' || $type == 'in'){
         $bookings['incoming']->each(function ($booking) use ($collection){
             $collection->push($this->setArrivalsData($booking));
         });
         }
-        
+
         if ($type == 'both' || $type == 'out') {
             $bookings['outgoing']->each(function ($booking) use ($collection) {
                 $collection->push($this->setReturnsData($booking));
@@ -194,6 +192,4 @@ class Report
 
         return $collection->sortBy('sort');
     }
-    
-    
 }

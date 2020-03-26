@@ -19,7 +19,7 @@ class BookingExport implements FromView, ShouldAutoSize, WithEvents
 {
     use Exportable;
     protected $bookings;
-    
+
     public function __construct(BookingExporter $bookings)
     {
         $this->bookings = $bookings;
@@ -30,7 +30,6 @@ class BookingExport implements FromView, ShouldAutoSize, WithEvents
      */
     public function view(): View
     {
-
         return view('reports.booking-export')->with(['bookings' => $this->bookings->bookings->sortBy('sort'), 'date' => $this->bookings->dateFrom]);
     }
 
@@ -39,8 +38,8 @@ class BookingExport implements FromView, ShouldAutoSize, WithEvents
         return [
             BeforeExport::class => function (BeforeExport $event) {
                 $event->writer->setCreator('Park Right');
-
             },
+
             AfterSheet::class => function (AfterSheet $event) {
                 $event->sheet->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
 
@@ -53,7 +52,6 @@ class BookingExport implements FromView, ShouldAutoSize, WithEvents
                         'borders' => [
                             'outline' => [
                                 'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                                //'color' => ['argb' => 'FFFF0000'],
                             ],
                         ]
                     ]
@@ -96,5 +94,5 @@ class BookingExport implements FromView, ShouldAutoSize, WithEvents
             'sort'         => $this->createTimeStamp($booking['booking_data']['return_date'].' '. $booking['booking_data']['return_time'])
         ];
     }
-    
+
 }

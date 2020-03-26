@@ -6,7 +6,6 @@ use App\Agents;
 use App\Booking;
 use App\Imports\BookingsImport;
 use App\Imports\LCSBookingImport;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -14,10 +13,10 @@ class BookingController extends Controller
 {
     public function import()
     {
-        // return request()->all();
         $agent = Agents::find(request('agent'));
-        //return $agent;
+
         $file = \request()->file('file');
+
         if ($agent->slug == 'LCS') {
             Excel::import(new LCSBookingImport($agent), $file);
         } else {
@@ -31,29 +30,6 @@ class BookingController extends Controller
         ]);
     }
 
-    public function get()
-    {
-        if (request()->has('query')) {
-            $bookings = Booking::search(request('query'))->paginate(10);
-
-        } else {
-            $bookings = Booking::paginate(10);
-
-        }
-        $bookings->getCollection()->transform(function ($booking) {
-            $booking->agent = $booking->agent;
-            $booking->product = $booking->product;
-
-            // $booking->booking_data->arrival_date = $arrival->format('d-m-Y');
-            //$booking->booking_data->return_date = (new Carbon($booking->booking_data->return_date))->format('d-m-Y');
-            return $booking;
-        });
-        return response([
-            'status' => 'success',
-            'bookings' => $bookings
-        ]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -61,41 +37,24 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
-    }
+        if (request()->has('query')) {
+            $bookings = Booking::search(request('query'))->paginate(10);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        } else {
+            $bookings = Booking::paginate(10);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $bookings->getCollection()->transform(function ($booking) {
+            $booking->agent = $booking->agent;
+            $booking->product = $booking->product;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Booking $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Booking $booking)
-    {
-        //
+            return $booking;
+        });
+        return response([
+            'status' => 'success',
+            'bookings' => $bookings
+        ]);
     }
-
 
     public function edit($id)
     {
@@ -105,7 +64,7 @@ class BookingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @param $id
      * @return \Illuminate\Http\Response
      */
@@ -126,20 +85,7 @@ class BookingController extends Controller
         }
         return response([
             'status' => 'success',
-            'msg'   => 'Booking updated.'
+            'msg' => 'Booking updated.'
         ], 200);
-
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Booking $booking
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Booking $booking)
-    {
-        //
     }
 }

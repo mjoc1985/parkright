@@ -19,7 +19,7 @@ class ScheduleExport implements FromView, ShouldAutoSize, WithEvents
 {
     use Exportable;
     public $schedule;
-    
+
     public function __construct(Schedule $schedule)
     {
         $this->schedule = $schedule;
@@ -39,11 +39,11 @@ class ScheduleExport implements FromView, ShouldAutoSize, WithEvents
         return [
             BeforeExport::class  => function(BeforeExport $event) {
                 $event->writer->setCreator('Park Right');
-                
             },
+
             AfterSheet::class    => function(AfterSheet $event) {
                 $event->sheet->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
-                
+
                 $event->sheet->styleCells(
                     'A3:K3',
                     [
@@ -53,7 +53,6 @@ class ScheduleExport implements FromView, ShouldAutoSize, WithEvents
                         'borders' => [
                             'outline' => [
                                 'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
-                                //'color' => ['argb' => 'FFFF0000'],
                             ],
                         ]
                     ]
@@ -64,7 +63,6 @@ class ScheduleExport implements FromView, ShouldAutoSize, WithEvents
                         'font' => [
                             'bold' => true
                         ],
-
                     ]
                 );
             },

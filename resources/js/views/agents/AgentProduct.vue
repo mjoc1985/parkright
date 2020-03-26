@@ -3,18 +3,16 @@
         <nav class=" sm:block md:block md:w-1/6 sm:w-full mr-8">
             <ul class="list-reset md:mb-8 sm:mt-4 sm:p-4 sm:inline-flex md:block">
                 <div class="text-primary-black pb-3 font-bold uppercase">Product</div>
-                <!--<li><router-link :to="{path: '/reports'}" class="py-2"><i class="fas fa-th mr-2"></i>Overview</router-link></li>-->
                 <li class="sm:px-4">
                     <router-link :to="{name: 'agents-edit', params:{id:agent.id}}" class="py-2"><i
-                            class="fas fa-wrench mr-2"></i>Setup
+                        class="fas fa-wrench mr-2"/>Setup
                     </router-link>
                 </li>
                 <li class="sm:px-4">
                     <router-link :to="{name: 'agents-products-index', params:{id:agent.id}}" class="py-2"><i
-                            class="fas fa-car mr-2"></i>Products
+                        class="fas fa-car mr-2"/>Products
                     </router-link>
                 </li>
-
             </ul>
         </nav>
         <div class="md:flex-1">
@@ -53,23 +51,13 @@
                                            class="form-input">
                                 </div>
                             </div>
-
-
-
                         </div>
-
                     </div>
-
                 </div> <!-- end card body -->
-
                 <div class="card-footer">
-
                     <button @click.prevent="save" class=" btn btn-primary">Save</button>
-
                 </div>
             </div>
-
-
         </div>
     </main>
 </template>
@@ -97,12 +85,10 @@
                         this.product = product.data;
                         this.agent = agent.data;
                         this.products = products.data;
-                        //this.product.agent_id = this.agent.id;
                     }.bind(this)))
-
             },
             save() {
-                axios.post('agents/products/' + this.product.id + '/update', this.$data.product)
+                axios.patch('agents/products/' + this.product.id + '/update', this.$data.product)
                     .then(response => {
                         this.$notify({
                             type: 'success',

@@ -21,7 +21,7 @@ class ReportController extends Controller
 {
     /**
      * Preview Schedule
-     * 
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
@@ -29,7 +29,7 @@ class ReportController extends Controller
     public function schedulePreview(Request $request)
     {
         $schedule = (new Schedule($request));
-       
+
         return view('reports.schedule', compact('schedule'));
     }
 
@@ -43,7 +43,6 @@ class ReportController extends Controller
     public function scheduleExport(Request $request)
     {
         return (new Schedule($request))->download();
-
     }
 
     /**
@@ -56,16 +55,14 @@ class ReportController extends Controller
     public function waivers(Request $request)
     {
         set_time_limit(0);
-        //$date = (new Carbon($request['date']));
-        //$bookings = Booking::whereBetween('booking_data->arrival_date', [$date->startOfDay(), $date->endOfDay()])->get();
-        $bookings = (new Waiver($request));
-        //dd($bookings);
-        $html = view('reports.pdf-waiver')->with('bookings', $bookings->bookings);
-        //$pdf = App::make('dompdf.wrapper');
-        $pdf = PDF::loadHtml($html);
-        //$pdf->setBasePath('/css/app.css');
-        return $pdf->stream('waivers.pdf');
 
+        $bookings = (new Waiver($request));
+
+        $html = view('reports.pdf-waiver')->with('bookings', $bookings->bookings);
+
+        $pdf = PDF::loadHtml($html);
+
+        return $pdf->stream('waivers.pdf');
     }
 
     /**
@@ -90,9 +87,10 @@ class ReportController extends Controller
     public function bookingsPreview(Request $request)
     {
         $export = (new BookingExporter($request));
+
         return view('reports.booking-export', ['bookings' => $export->bookings]);
     }
-    
+
     public function filterData()
     {
         return [
@@ -106,4 +104,4 @@ class ReportController extends Controller
 }
 
 
-   
+

@@ -1,6 +1,6 @@
 <template>
     <main class="md:flex sm:block w-full">
-        <sub-nav></sub-nav>
+        <sub-nav/>
         <div class="flex-1">
             <div class="flex-1 ">
                 <div class="card mb-4 ">
@@ -19,35 +19,39 @@
                                             <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
                                                 <label>Agent</label>
                                                 <div class="relative">
-                                                <select v-model="filter.agent" class="form-input">
-                                                    <option value="">All</option>
-                                                    <option v-for="agent in filterOptions.agents" :value="agent.slug">{{ agent.name }}</option>
-                                                </select>
-                                                    <div class="form-select-caret"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="font-semibold clearfix">
-                                            <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
-                                                <label>Product</label>
-                                                <div class="relative">
-                                                    <select v-model="filter.product" class="form-input">
+                                                    <select class="form-input" v-model="filter.agent">
                                                         <option value="">All</option>
-                                                        <option v-for="product in filterOptions.products" :value="product.id">{{ product.name }}</option>
+                                                        <option :value="agent.slug"
+                                                                v-for="agent in filterOptions.agents">{{ agent.name }}
+                                                        </option>
                                                     </select>
                                                     <div class="form-select-caret"></div>
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <div class="font-semibold clearfix">
+                                            <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
+                                                <label>Product</label>
+                                                <div class="relative">
+                                                    <select class="form-input" v-model="filter.product">
+                                                        <option value="">All</option>
+                                                        <option :value="product.id"
+                                                                v-for="product in filterOptions.products">{{ product.name }}
+                                                        </option>
+                                                    </select>
+                                                    <div class="form-select-caret"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="font-semibold clearfix">
                                             <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
                                                 <label>Service Type</label>
                                                 <div class="relative">
-                                                    <select v-model="filter.service" class="form-input">
+                                                    <select class="form-input" v-model="filter.service">
                                                         <option value="">All</option>
-                                                        <option v-for="service in filterOptions.serviceType" :value="service">{{ service }}</option>
+                                                        <option :value="service"
+                                                                v-for="service in filterOptions.serviceType">{{ service }}
+                                                        </option>
                                                     </select>
                                                     <div class="form-select-caret"></div>
                                                 </div>
@@ -60,7 +64,7 @@
                                         <div class="md:w-3/4 float-left md:pr-2 sm:w-full ">
                                             <label>Select Date</label>
                                             <date-picker :config="config" class="form-input"
-                                                         v-model="date"></date-picker>
+                                                         v-model="date"/>
                                         </div>
                                     </div>
                                     <div class="font-semibold clearfix">
@@ -79,25 +83,24 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div> <!-- end card body -->
-
                     <div class="card-footer sm:block">
-                        <button id="previewButton" @click.prevent="preview" class="btn btn-primary md:inline sm:block sm:my-2 md:w-40 sm:w-full"><i class="fas fa-eye mr-2"></i>Preview</button>
-
-                        <button id="waiverButton" @click.prevent="waiver" class="btn btn-primary md:inline sm:block sm:my-2 md:w-40 sm:w-full"><i class="fas fa-file-download mr-2"></i>Waivers</button>
-
-                        <button id="downloadButton" @click.prevent="download" class="btn btn-primary md:inline sm:block sm:my-2 md:w-64 sm:w-full"><i class="fas fa-download mr-2"></i>Download Schedule</button>
-
-
+                        <button @click.prevent="preview" class="btn btn-primary md:inline sm:block sm:my-2 md:w-40 sm:w-full"
+                                id="previewButton"><i
+                            class="fas fa-eye mr-2"/>Preview
+                        </button>
+                        <button @click.prevent="waiver" class="btn btn-primary md:inline sm:block sm:my-2 md:w-40 sm:w-full"
+                                id="waiverButton"><i
+                            class="fas fa-file-download mr-2"/>Waivers
+                        </button>
+                        <button @click.prevent="download" class="btn btn-primary md:inline sm:block sm:my-2 md:w-64 sm:w-full"
+                                id="downloadButton"><i
+                            class="fas fa-download mr-2"/>Download Schedule
+                        </button>
                     </div>
                 </div>
-                <preview :view-data="this.previewData"></preview>
-
+                <preview :view-data="this.previewData"/>
             </div>
-
-
         </div>
     </main>
 </template>
@@ -121,7 +124,7 @@
                     view: null
                 },
                 filterOptions: {},
-                filter:{
+                filter: {
                     agent: '',
                     product: '',
                     service: ''
@@ -133,31 +136,31 @@
 
         },
         methods: {
-            buildQuery(){
+            buildQuery() {
                 let query = new FormData();
-                
+
                 query.append('date', this.date);
                 query.append('type', this.type);
-                
-                if (this.filter.agent){
+
+                if (this.filter.agent) {
                     query.append('agent', this.filter.agent);
-                } 
-                if (this.filter.product){
+                }
+                if (this.filter.product) {
                     query.append('product', this.filter.product);
-                } 
+                }
                 if (this.filter.service) {
                     query.append('service', this.filter.service);
                 }
                 return new URLSearchParams(query).toString();
             },
             download() {
-                let button        = document.getElementById('downloadButton');
+                let button = document.getElementById('downloadButton');
                 let buttonContent = button.innerHTML;
-                button.innerHTML  = '<i class="fa fa-spinner fa-spin"></i>';
-                
+                button.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+
                 axios.get('/reports/schedule/export?' + this.buildQuery(), {responseType: 'arraybuffer'})
                     .then(response => {
-                       button.innerHTML = buttonContent;
+                        button.innerHTML = buttonContent;
                         const blob = new Blob([response.data], {type: 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
                         let link = document.createElement('a');
                         console.log(blob);
@@ -169,20 +172,20 @@
                     })
             },
             preview() {
-                let button        = document.getElementById('previewButton');
+                let button = document.getElementById('previewButton');
                 let buttonContent = button.innerHTML;
-                button.innerHTML  = '<i class="fa fa-spinner fa-spin"></i>';
+                button.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
                 axios.get('/reports/schedule/preview?' + this.buildQuery())
                     .then(response => {
                         button.innerHTML = buttonContent;
                         this.previewData.date = this.date;
                         this.previewData.view = response.data
                     })
-            }, 
-            waiver(){
-                let button        = document.getElementById('waiverButton');
+            },
+            waiver() {
+                let button = document.getElementById('waiverButton');
                 let buttonContent = button.innerHTML;
-                button.innerHTML  = '<i class="fa fa-spinner fa-spin"></i>';
+                button.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
                 axios.get('/reports/schedule/waivers' + '?waiverDate=' + this.date + '&type=in', {responseType: 'blob'})
                     .then(response => {
                         button.innerHTML = buttonContent;
@@ -196,7 +199,7 @@
                         link.click();
                     })
             },
-            fetch(){
+            fetch() {
                 axios.get('/reports/schedule/filterData')
                     .then(response => {
                         this.filterOptions = response.data;
