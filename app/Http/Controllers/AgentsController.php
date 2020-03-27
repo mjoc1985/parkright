@@ -30,6 +30,15 @@ class AgentsController extends Controller
        return Agents::find($id);
     }
 
+    public function store(Request $request)
+    {
+        $agent = Agents::create($request->all());
+
+        return response()->json([
+            'msg' => 'Agent Created!'
+        ], 201);
+    }
+
     /**
      * @param Request $request
      * @param $id

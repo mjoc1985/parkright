@@ -51,6 +51,7 @@ Route::group(['prefix' => 'webhooks'], function (){
 
 Route::group(['prefix' => 'agents'], function (){
     Route::get('/', 'AgentsController@index');
+    Route::post('/', 'AgentsController@store');
     Route::get('{id}/edit', 'AgentsController@edit');
     Route::patch('{id}/update', 'AgentsController@update');
     Route::get('{id}/products', 'AgentsProductsController@index');
@@ -58,7 +59,6 @@ Route::group(['prefix' => 'agents'], function (){
     Route::post('products/store', 'AgentsProductsController@store');
     Route::patch('products/{product}/update', 'AgentsController@updateProduct');
     Route::get('products/{product}/edit', 'AgentsProductsController@show');
-
 });
 
 Route::group(['prefix' => 'products'], function() {

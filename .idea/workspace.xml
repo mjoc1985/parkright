@@ -2,31 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5be05d9f-a8e9-4a9b-ab64-07f8f0a0fc04" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator-enh.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/parkright.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/parkright.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env.testing" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exports/BookingExport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/BookingExport.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exports/ScheduleExport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/ScheduleExport.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgentsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SpaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SpaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WebhookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WebhookController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Reports/BookingExporter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reports/BookingExporter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Reports/Report.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reports/Report.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Reports/Waiver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reports/Waiver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Search/BookingSearch.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Search/BookingSearch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/agents/AgentProduct.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/agents/AgentProduct.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/agents/AgentProductsIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/agents/AgentProductsIndex.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/reports/Schedule.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/reports/Schedule.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +157,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -191,15 +171,16 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/reports" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/resources/views/reports" />
       <recent name="$PROJECT_DIR$/resources/js/views/reports" />
       <recent name="$PROJECT_DIR$/resources/js/views/agents" />
       <recent name="$PROJECT_DIR$/storage/app/public" />
-      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Unit" />
+      <recent name="$PROJECT_DIR$/app/reports" />
     </key>
   </component>
   <component name="RunManager">
@@ -253,7 +234,8 @@
       <workItem from="1578569554999" duration="193000" />
       <workItem from="1583755675065" duration="2160000" />
       <workItem from="1585058159277" duration="62000" />
-      <workItem from="1585239616488" duration="1967000" />
+      <workItem from="1585239616488" duration="2742000" />
+      <workItem from="1585307805003" duration="2048000" />
     </task>
     <servers />
   </component>
@@ -265,12 +247,13 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="578" y="298" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1680.1027/-445.-1417.2560.1417@0.23.1680.1027" timestamp="1585240125619" />
-    <state x="505" y="251" width="670" height="662" key="search.everywhere.popup" timestamp="1585239985929">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1585308624769">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050/-445.-1440.2560.1440@0.0.1680.1050" timestamp="1584095954998" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050/-445.-1440.2560.1440@0.0.1680.1050" timestamp="1585308624769" />
     <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1583836224463" />
     <state x="505" y="251" width="670" height="662" key="search.everywhere.popup/0.23.1680.1027/-445.-1417.2560.1417@0.23.1680.1027" timestamp="1585239985929" />
+    <state x="505" y="251" width="670" height="662" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1585307684484" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
